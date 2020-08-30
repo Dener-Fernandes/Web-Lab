@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      Web Lab
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/ajustes.css"/>
+    <link rel="shortcut icon" href="img/imagens-weblab/weblab-icone.ico"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <!-- <link href="../assets/demo/demo.css" rel="stylesheet"/> -->
+  </head>
+
+  <body>
+    <!--Menu-->
+    <div class="wrapper">
+      <div class="sidebar" data-color="green" data-background-color="black">
+        <div class="logo">
+          <a href="" class="simple-text logo-normal">
+            Web Lab
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item">
+              <form class="logout2" action="/logout" method="POST">
+                <button type="submit"><i class="material-icons nav-link">logout</i><p>Sair</p></button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home">
+                <i class="material-icons">home</i>
+                <p>Página inicial</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/usuario">
+                <i class="material-icons">person</i>
+                <p>Perfil de usuário</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/agendamentos">
+                <i class="material-icons">calendar_today</i>
+                <p>Agendamentos</p>
+              </a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link" href="/tecnicos">
+                <i class="material-icons">supervisor_account</i>
+                <p>Técnicos dos laboratórios</p>
+              </a>
+            </li>
+            <%if (nivelUsuario == "1") {%>
+              <li class="nav-item">
+                <a class="nav-link" href="/pagina_cadastro_usuarios">
+                  <i class="material-icons">assignment_ind</i>
+                  <p>Cadastrar usuários</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cadastro_itens">
+                  <i class="material-icons">assignment</i>
+                  <p>Cadastrar itens</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cadastro_avisos">
+                  <i class="material-icons">assignment_late</i>
+                  <p>Cadastrar avisos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lista_agendamentos">
+                  <i class="material-icons">list</i>
+                  <p>Lista de agendamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lista_usuarios">
+                  <i class="material-icons">people</i>
+                  <p>Lista de usuários</p>
+                </a>
+              </li>
+            <%}%> 
+            <li class="nav-item">
+              <a class="nav-link" href="/equipamentos">
+                <i class="material-icons">build</i>
+                <p>Equipamentos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produtos">
+                <i class="material-icons">bubble_chart</i>
+                <p>Produtos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/mural_avisos">
+                <i class="material-icons">notifications</i>
+                <p>Mural de avisos</p>
+              </a>
+            </li> 
+          </ul>
+        </div>
+      </div>
+      <!--Menu-->
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="javascript:void(0)">Atualizar Agendamento</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        <!--Conteúdo principal-->
+        <div class="content mt-1">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header bg-success">
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <h3 class="card-title text-white">Atualize seu agendamento</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <%if (agendamento.length > 0) {%>
+                      <form action="atualizar_agendamento" method="POST">
+                        <div class="form-group invisivel">
+                          <input type="text" class="invisivel" name="id_agendamento" value="<%=agendamento[0].id_agendamento%>"/>
+                        </div>
+                        <div class="form-group">
+                          <h4>Motivo</h4>
+                          <%if (validacao.length > 0) {%>
+                            <%for (let i = 0; i < validacao.length ; i++) {%>
+                              <%if (validacao[i].msg == "2") {%>
+                                <p class="text-danger">O motivo do agendamento é obrigatório!</p>
+                              <%}%>  
+                            <%}%>  
+                          <%}%>
+                          <select class="custom-select" name="motivo_agendamento_atualizacao">
+                            <option value="">ESCOLHER</option>
+                            <%if (motivos.length > 0) {%>
+                              <%for (let i = 0; i < motivos.length; i++) {%>
+                                <option value="<%=motivos[i].id_motivo_agendamento%>"><%=motivos[i].descricao_motivo%></option>
+                              <%}%>  
+                            <%}%>       
+                          </select> 
+                        </div>
+                        <div class="form-group">
+                          <h4>Descrição do agendamento</h4>
+                          <%if (validacao.length > 0) {%>
+                            <%for (let i = 0; i < validacao.length ; i++) {%>
+                              <%if (validacao[i].msg == "3") {%>
+                                <p class="text-danger">A descrição do agendamento é obrigatório!</p>
+                              <%}%>  
+                              <%if (validacao[i].msg == "4") {%>
+                                <p class="text-danger">A descrição precisa ter mais de 10 caracteres e menos de 100!</p>
+                              <%}%> 
+                            <%}%>  
+                          <%}%> 
+                          <textarea class="form-control" name="descricao_agendamento_atualizacao"><%=agendamento[0].descricao_agendamento%></textarea>
+                        </div>
+                        <div class="form-group">
+                          <h4>Produtos</h4>
+                          <span class="fonteTamanho2">Utilizarei produtos</span>
+                          <input type="radio" value="true" name="utilizar_produto_atualizacao" checked onclick="menu('0')"/>
+                          <span class="fonteTamanho2">Não utilizarei</span>
+                          <input type="radio" value="false" name="utilizar_produto_atualizacao" onclick="menu('1')"/>
+                          <div class="visivel" id="produtos">
+                            <select class="custom-select" name="nome_produto_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (produtos.length > 0) {%>
+                                <%for (let i = 0; i < produtos.length; i++) {%>
+                                  <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                                    <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select" name="nome_produto_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (produtos.length > 0) {%>
+                                <%for (let i = 0; i < produtos.length; i++) {%>
+                                  <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                                    <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select" name="nome_produto_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (produtos.length > 0) {%>
+                                <%for (let i = 0; i < produtos.length; i++) {%>
+                                  <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                                    <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select" name="nome_produto_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (produtos.length > 0) {%>
+                                <%for (let i = 0; i < produtos.length; i++) {%>
+                                  <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                                    <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select visivel" name="nome_produto_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (produtos.length > 0) {%>
+                                <%for (let i = 0; i < produtos.length; i++) {%>
+                                  <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                                    <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                                   <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <h4>Equipamentos</h4>
+                          <span class="fonteTamanho2">Utilizarei equipamentos</span>
+                          <input type="radio" value="true" name="utilizar_equipamento_atualizacao" checked onclick="menu('2')"/>
+                          <span class="fonteTamanho2">Não utilizarei</span>
+                          <input type="radio" value="false" name="utilizar_equipamento_atualizacao" onclick="menu('3')"/>
+                          <div class="visivel" id="equipamentos">
+                            <select class="custom-select visivel" name="nome_equipamento_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (equipamentos.length > 0) {%>
+                                <%for (let i = 0; i < equipamentos.length; i++) {%>
+                                  <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                                    <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select visivel" name="nome_equipamento_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (equipamentos.length > 0) {%>
+                                <%for (let i = 0; i < equipamentos.length; i++) {%>
+                                  <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                                    <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select visivel" name="nome_equipamento_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (equipamentos.length > 0) {%>
+                                <%for (let i = 0; i < equipamentos.length; i++) {%>
+                                  <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                                    <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select visivel" name="nome_equipamento_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (equipamentos.length > 0) {%>
+                                <%for (let i = 0; i < equipamentos.length; i++) {%>
+                                  <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                                    <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%> 
+                            </select>
+                            <select class="custom-select visivel" name="nome_equipamento_atualizacao">
+                              <option value="F">ESCOLHER</option>
+                              <%if (equipamentos.length > 0) {%>
+                                <%for (let i = 0; i < equipamentos.length; i++) {%>
+                                  <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                                    <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                                  <%}%>  
+                                <%}%>  
+                              <%}%>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <a href="/agendamentos" class="btn btn-danger col-12 col-md pull-right">CANCELAR</a>
+                          <button type="submit" class="btn btn-success col-12 col-md">ATUALIZAR</button>
+                        </div>
+                      </form>
+                    <%}%>    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Conteúdo principal-->
+    <!--   Core JS Files   -->
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://unpkg.com/default-passive-events"></script>
+    <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--  Google Maps Plugin    -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+    <!-- Chartist JS -->
+    <script src="js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="js/material-dashboard.js?v=2.1.0"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <!-- <script src="../../public/demo/demo.js"></script> -->
+  </body>
+</html>

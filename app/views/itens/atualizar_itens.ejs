@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
+  <!-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Web Lab
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ajustes.css" />
+  <!-- CSS Files -->
+  <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/ajustes.css" />
+  <link rel="shortcut icon" href="img/imagens-weblab/weblab-icone.ico"/>
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <!-- <link href="../assets/demo/demo.css" rel="stylesheet" /> -->
+</head>
+
+<body>
+  <!--Menu-->
+  <div class="wrapper">
+    <div class="sidebar" data-color="green" data-background-color="black">
+      <div class="logo">
+        <a href="" class="simple-text logo-normal">
+          Web Lab
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <form class="logout2" action="/logout" method="POST">
+              <button type="submit"><i class="material-icons nav-link">logout</i>
+                <p>Sair</p>
+              </button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="material-icons">home</i>
+              <p>Página inicial</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/usuario">
+              <i class="material-icons">person</i>
+              <p>Perfil de usuário</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/agendamentos">
+              <i class="material-icons">calendar_today</i>
+              <p>Agendamentos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tecnicos">
+              <i class="material-icons">supervisor_account</i>
+              <p>Técnicos dos laboratórios</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pagina_cadastro_usuarios">
+              <i class="material-icons">assignment_ind</i>
+              <p>Cadastrar usuários</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cadastro_itens">
+              <i class="material-icons">assignment</i>
+              <p>Cadastrar itens</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cadastro_avisos">
+              <i class="material-icons">assignment_late</i>
+              <p>Cadastrar avisos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/lista_agendamentos">
+              <i class="material-icons">list</i>
+              <p>Lista de agendamentos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/lista_usuarios">
+              <i class="material-icons">people</i>
+              <p>Lista de usuários</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/equipamentos">
+              <i class="material-icons">build</i>
+              <p>Equipamentos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/produtos">
+              <i class="material-icons">bubble_chart</i>
+              <p>Produtos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mural_avisos">
+              <i class="material-icons">notifications</i>
+              <p>Mural de avisos</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--Menu-->
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:void(0)">Cadastro de itens</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+            aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- Conteúdo principal -->
+      <div class="content mt-1">
+        <div class="content-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header bg-success">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <h3 class="card-title text-white">Cadastrar itens</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h3 class="text-center">Cadastrar equipamento</h3>
+                      <form action="/atualizar_equipamento" method="POST" enctype="MULTIPART/FORM-DATA">
+                        <div class="card-profile">
+                            <div class="pull-right">
+                                <div class="col-md-10">
+                                    <%if (equipamento.length > 0) {%>
+                                      <img class="foto" src="img/imagens-equipamentos/<%=equipamento[0].imagem_equipamento%>" width="150px" height="150px" alt="Imagem indisponível"/>
+                                      <input type="text" class="invisivel" name="imagem_padrao" value="<%=equipamento[0].imagem_equipamento%>"/>
+                                      <span class="pull-right mt-1 aviso">A foto será alterada após concluir a edição</span>
+                                      <%}%>  
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row"></div>
+                          <div class="form-group invisivel">
+                            <%if (equipamento.length > 0) {%>
+                              <input type="text" class="invisivel" name="id_equipamento" value="<%=equipamento[0].id_equipamento%>"readonly/>
+                            <%} else {%>
+                              <input type="text" class="invisivel" name="id_equipamento" value=""readonly/>
+                            <%}%>  
+                          </div>
+                        <%if (validacaoEquipamento.length > 0) {%>
+                          <%for (let i = 0; i < validacaoEquipamento.length; i++) {%>
+                            <%if (validacaoEquipamento[i].msg == "0") {%>
+                              <span class="text-danger">Campo vazio!</span>
+                            <%}%>
+                            <%if (validacaoEquipamento[i].msg == "1") {%>
+                              <span class="text-danger">Tamanho inválido!</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%>  
+                        <div class="form-group mt-4">
+                          <label class="bmd-label-floating">Nome do equipamento</label>
+                          <%if (equipamento.length > 0) {%>
+                            <input type="text" class="form-control" name="nome_equipamento_atualizacao" value="<%=equipamento[0].nome_equipamento%>"/>
+                          <%} else {%>
+                              <input type="text" class="form-control" name="nome_equipamento_atualizacao" value=""/>
+                          <%}%> 
+                        </div>
+                        <%if (validacaoEquipamento.length > 0) {%>
+                          <%for (let i = 0; i < validacaoEquipamento.length; i++) {%>
+                            <%if (validacaoEquipamento[i].msg == "2") {%>
+                              <span class="text-danger">O valor precisa ser um núemro!</span>
+                            <%}%>
+                            <%if (validacaoEquipamento[i].msg == "3") {%>
+                              <span class="text-danger">O número precisa ser do tipo inteiro!</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%> 
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Quantidade do equipamento</label>
+                          <%if (equipamento.length > 0) {%>
+                            <input type="text" class="form-control" name="quantidade_equipamento_atualizacao" value="<%=equipamento[0].quantidade_equipamento%>"/>
+                          <%} else {%>
+                            <input type="text" class="form-control" name="quantidade_equipamento_atualizacao" value=""/>
+                          <%}%> 
+                        </div>
+                        <%if (validacaoEquipamento.length > 0) {%>
+                          <%for (let i = 0; i < validacaoEquipamento.length; i++) {%>
+                            <%if (validacaoEquipamento[i].msg == "4") {%>
+                              <span class="text-danger">Campo vazio!</span>
+                            <%}%>
+                            <%if (validacaoEquipamento[i].msg == "5") {%>
+                              <span class="text-danger">O valor precisa ser um núemro!</span>
+                            <%}%>
+                            <%if (validacaoEquipamento[i].msg == "6") {%>
+                              <span class="text-danger">O número precisa ser do tipo inteiro!</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%> 
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Número de patrimônio</label>
+                          <%if (equipamento.length > 0) {%>
+                            <input type="text" class="form-control" name="numero_patrimonio_atualizacao" value="<%=equipamento[0].numero_patrimonio%>"/>
+                          <%} else {%>
+                            <input type="text" class="form-control" name="numero_patrimonio_atualizacao" value=""/>
+                          <%}%>
+                        </div>
+                        <%if (validacaoEquipamento.length > 0) {%>
+                          <%for (let i = 0; i < validacaoEquipamento.length; i++) {%>
+                            <%if (validacaoEquipamento[i].msg == "7") {%>
+                              <span class="text-danger">O status do equipamento é obrigatório!</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%> 
+                        <div class="form-group">
+                          <h4>Status do equipamento</h4>
+                          <select class="custom-select" name="status_equipamento_atualizacao">
+                            <option value="">ESCOLHER</option>
+                            <option value="DISPONÍVEL">DISPONÍVEL</option>
+                            <option value="INDISPONÍVEL">INDISPONÍVEL</option>
+                          </select>
+                        </div>
+                        <%if (validacaoEquipamento.length > 0) {%>
+                          <%for (let i = 0; i < validacaoEquipamento.length; i++) {%>
+                            <%if (validacaoEquipamento[i].msg == "8") {%>
+                              <span class="text-danger">O laboratório é obrigatório</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%>
+                        <div class="form-group">
+                          <h4>Pertence a qual laboratório</h4>
+                          <select class="custom-select" name="pertence_laboratorio_atualizacao">
+                            <%if (laboratorios.length > 0) {%>
+                              <option value="">ESCOLHER</option>
+                              <option value="<%=laboratorios[0].id_laboratorio%>"><%=laboratorios[0].nome_laboratorio%></option>
+                              <option value="<%=laboratorios[1].id_laboratorio%>"><%=laboratorios[1].nome_laboratorio%></option>
+                            <%}%>  
+                          </select>
+                        </div> 
+                        <h4 class="mt-2">Foto do equipamento</h4>
+                        <input class="mt-4" type="file" id="id_equipamento_imagem" name="imagem_equipamento" accept=""/>
+                        <label id="id_label_equipamento" for="id_equipamento_imagem">
+                          <i class="material-icons">insert_photo</i>&nbsp;ESCOLHER FOTO</label>
+                          <a href="/equipamentos" class="btn btn-danger col-md-12">CANCELAR</a>
+                          <button type="submit" class="btn btn-success col-md-12">ATUALIZAR</button>
+                      </form>
+                    </div>
+                    <div class="col-md-6">
+                      <h3 class="text-center">Cadastrar produto</h3>
+                      <form action="/atualizar_produto" method="POST" enctype="MULTIPART/FORM-DATA">
+                        <div class="card-profile">
+                          <div class="pull-right">
+                              <div class="col-md-10">
+                                <%if (produto.length > 0) {%>
+                                  <img class="foto" src="img/imagens-produtos/<%=produto[0].imagem_produto%>" width="150px" height="150px" alt="Imagem indisponível"/>
+                                  <input type="text" class="invisivel" name="imagem_padrao" value="<%=produto[0].imagem_produto%>"/>
+                                  <span class="pull-right mt-1 aviso">A foto será alterada após concluir a edição</span>
+                                <%}%>  
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="form-group invisivel">
+                          <%if (produto.length > 0) {%>
+                            <input type="text" class="invisivel" name="id_produto" value="<%=produto[0].id_produto%>"readonly/>
+                          <%} else {%>
+                            <input type="text" class="invisivel" name="id_produto" value=""readonly/>
+                          <%}%>  
+                        </div>
+                        <%if (validacaoProduto.length > 0) {%>
+                          <%for (let i = 0; i < validacaoProduto.length; i++) {%>
+                            <%if (validacaoProduto[i].msg == "0") {%>
+                              <span class="text-danger">Campo vazio!</span>
+                            <%}%>
+                            <%if (validacaoProduto[i].msg == "1") {%>
+                              <span class="text-danger">Tamanho inválido!</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%>
+                        <div class="form-group mt-4">
+                          <label class="bmd-label-floating">Nome do produto</label>
+                          <%if (produto.length > 0) {%>
+                            <input type="text" class="form-control" name="nome_produto_atualizacao" value="<%=produto[0].nome_produto%>"/>
+                          <%} else {%>
+                            <input type="text" class="form-control" name="nome_produto_atualizacao" value=""/>
+                          <%}%>
+                        </div>
+                        <%if (validacaoProduto.length > 0) {%>
+                          <%for (let i = 0; i < validacaoProduto.length; i++) {%>
+                            <%if (validacaoProduto[i].msg == "2") {%>
+                              <span class="text-danger">Campo vazio!</span>
+                            <%}%>
+                            <%if (validacaoProduto[i].msg == "3") {%>
+                              <span class="text-danger">O valor precisa ser um núemro!</span>
+                            <%}%>
+                            <%if (validacaoProduto[i].msg == "4") {%>
+                              <span class="text-danger">O número precisa ser do tipo inteiro!</span>
+                            <%}%>   
+                          <%}%>  
+                        <%}%>
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Quantidade do produto</label>
+                          <%if (produto.length > 0) {%>
+                            <input type="text" class="form-control" name="quantidade_produto_atualizacao" value="<%=produto[0].quantidade_produto%>"/>
+                          <%} else {%>
+                            <input type="text" class="form-control" name="quantidade_produto_atualizacao" value=""/>
+                          <%}%>
+                        </div>
+                        <%if (validacaoProduto.length > 0) {%>
+                          <%for (let i = 0; i < validacaoProduto.length; i++) {%>
+                            <%if (validacaoProduto[i].msg == "5") {%>
+                              <span class="text-danger">Campo vazio!</span>
+                            <%}%>  
+                          <%}%> 
+                        <%}%>  
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Fórmula do produto</label>
+                          <%if (produto.length > 0) {%>
+                            <input type="text" class="form-control" name="formula_produto_atualizacao" value="<%=produto[0].formula_produto%>"/>
+                          <%} else {%>
+                            <input type="text" class="form-control" name="formula_produto_atualizacao" value=""/>
+                          <%}%>
+                        </div>
+                        <%if (validacaoProduto.length > 0) {%>
+                          <%for (let i = 0; i < validacaoProduto.length; i++) {%>
+                            <%if (validacaoProduto[i].msg == "6") {%>
+                              <span class="text-danger">O status do produto é obrigatório!</span>
+                            <%}%>  
+                          <%}%> 
+                        <%}%>
+                        <div class="form-group">
+                          <h4>Status do produto</h4>
+                          <select class="custom-select" name="status_produto_atualizacao">
+                            <option value="">ESCOLHER</option>
+                            <option value="DISPONÍVEL">DISPONÍVEL</option>
+                            <option value="INDISPONÍVEL">INDISPONÍVEL</option>
+                          </select>
+                        </div>
+                        <%if (validacaoProduto.length > 0) {%>
+                          <%for (let i = 0; i < validacaoProduto.length; i++) {%>
+                            <%if (validacaoProduto[i].msg == "7") {%>
+                              <span class="text-danger">O laboratório é obrigatório!</span>
+                            <%}%>  
+                          <%}%> 
+                        <%}%>
+                        <div class="form-group">
+                          <h4>Pertence a qual laboratório</h4>
+                          <select class="custom-select" name="pertence_laboratorio_atualizacao">
+                            <%if (laboratorios.length > 0) {%>
+                              <option value="">ESCOLHER</option>
+                              <option value="<%=laboratorios[1].id_laboratorio%>"><%=laboratorios[1].nome_laboratorio%></option>
+                            <%}%>  
+                          </select>
+                        </div>
+                        <h4 class="mt-2">Foto do produto</h4>
+                        <input class="mt-4" type="file" id="id_produto_imagem" name="imagem_produto" accept=""/>
+                        <label id="id_label_produto" for="id_produto_imagem">
+                        <i class="material-icons">insert_photo</i>&nbsp;ESCOLHER FOTO</label>
+                        <a href="/produtos" class="btn btn-danger col-md-12">CANCELAR</a>
+                        <button type="submit" class="btn btn-success col-md-12">ATUALIZAR</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Conteúdo principal -->
+      <!--   Core JS Files   -->
+      <script src="js/core/jquery.min.js"></script>
+      <script src="js/core/popper.min.js"></script>
+      <script src="js/core/bootstrap-material-design.min.js"></script>
+      <script src="https://unpkg.com/default-passive-events"></script>
+      <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
+      <!-- Place this tag in your head or just before your close body tag. -->
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <!--  Google Maps Plugin    -->
+      <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+      <!-- Chartist JS -->
+      <script src="js/plugins/chartist.min.js"></script>
+      <!--  Notifications Plugin    -->
+      <script src="js/plugins/bootstrap-notify.js"></script>
+      <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+      <script src="js/material-dashboard.js?v=2.1.0"></script>
+      <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+      <!-- <script src="demo/demo.js"></script> -->
+</body>
+
+</html>

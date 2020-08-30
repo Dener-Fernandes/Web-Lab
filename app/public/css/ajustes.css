@@ -1,0 +1,206 @@
+/* 9991px */
+@media(max-width: 991px){
+    #pesquisar_id, #botaoPesquisar_id{
+        margin-right: 35px;
+        margin-bottom: 10px;
+    }
+}
+@media(max-width: 991px){
+    #botaoPesquisar_id{
+        margin-right: 45px;
+        margin-bottom: 10px;
+    }
+}
+
+.imagem-equipamento {
+    width: 200px !important;
+    height: 200px !important;
+}
+.imagem-produto {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+#modal2{
+    overflow-y: scroll;
+}
+
+.img-usuario, .img-tecnico{
+    padding-top: 35px;
+}
+.informacao{
+    padding-top: 20px;
+}
+
+.borda{
+    border: solid gray;
+}
+.borda2{
+    border: 1px solid gray;
+}
+
+@media(max-width: 767px){
+    .informacao{
+        padding-top: 0px;
+    }
+}
+
+.visivel{
+    display: block;
+}
+
+.invisivel{
+    display: none;
+}
+
+.logout2 {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    width: 230px;
+    height: 50px;
+    border-radius: 3%;
+    padding-right: 100px;
+    background-color: #191919;
+    border-radius: 4px;
+}
+.logout2 button {
+    margin-right: 100px !important;
+    margin-bottom: 10px;
+    outline: none;
+    border: none;
+    width: 230px;
+    height: 50px;
+    background-color: #191919;
+    border-radius: 3px;
+    
+}
+.logout2 button p {
+    padding-right: 126px;
+    padding-top: 9px;
+    font-size: 1rem !important;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logout2, .logout2 button:hover {
+    cursor: pointer;
+    background-color: #4e4d4d;
+}
+
+@media(max-width: 991px) {
+    .logout2, .logout2 button {
+        background-color: #282828;
+    }
+}
+
+ul.nav.navbar-nav.nav-mobile-menu {
+    display:none
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#id_label_equipamento, 
+#id_label_produto, 
+#id_label_usuario, 
+#id_label_adm,
+#id_label_laboratorio0,
+#id_label_laboratorio1 {
+    color: white;
+    width: 150px;
+    height: 50px;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+#id_label_equipamento:hover, 
+#id_label_produto:hover, 
+#id_label_usuario:hover, 
+#id_label_adm:hover,
+#id_label_foto:hover,
+#id_label_laboratorio0,
+#id_label_laboratorio1 {
+    cursor: pointer;
+}
+
+.fundo {
+    background-color: #DCDCDC;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+.espInterno {
+    padding-left: 5px;
+    border-radius: 10px;
+    font-size: 1rem;
+    
+}
+
+.foto {
+    width: 150px;
+    border-radius: 100px;
+}
+#id_label_foto{
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+    width: 40px;
+    height: 40px;
+    display: block;
+    color: white;
+    background-color: gray;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aviso {
+    font-size: 1rem;
+}
+
+.fonteTamanho {
+    font-size: 1.2rem;
+}
+.fonteTamanho2 {
+    font-size: 1rem;
+}
+
+@media(max-width: 367px) {
+    .fonteTamanho2 {
+        font-size: 15px;
+    }
+}
+
+@media(max-width: 320px) {
+    .buttonTamanho {
+        width: 160px !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
+
+.agdText {
+    font-size: 1rem;
+}
+
+@media(max-width: 461px) {
+    .logoConfig {
+        width: 300px;
+        height: 200px;
+    }
+}
+@media(max-width: 375px) {
+    .logoConfig {
+        width: 240px;
+        height: 100px;
+    }
+}
+@media(max-width: 360px) {
+    .logoConfig {
+        width: 230px;
+        height: 100px;
+    }
+}
