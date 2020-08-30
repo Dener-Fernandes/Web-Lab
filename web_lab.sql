@@ -28,7 +28,6 @@ nivel_usuario INTEGER,
 data_criacao_usuario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE permanencia (
 id_permanencia INTEGER PRIMARY KEY AUTO_INCREMENT,
 segunda_feira_manha VARCHAR(15),
@@ -62,6 +61,9 @@ descricao_laboratorio TEXT,
 id_usuario INTEGER,
 FOREIGN KEY(id_usuario) REFERENCES usuario (id_usuario)
 );
+
+INSERT INTO laboratorio (nome_laboratorio, imagem_laboratorio, id_usuario) VALUES ("LABORATÓRIO DE FÍSICA", "Wiped Out.jpg", "2");
+INSERT INTO laboratorio (nome_laboratorio, imagem_laboratorio, id_usuario) VALUES ("LABORATÓRIO DE QUÍMICA", "AM.jpg", "3");
 
 CREATE TABLE agendamento (
 id_agendamento INTEGER PRIMARY KEY AUTO_INCREMENT,
