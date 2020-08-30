@@ -28,9 +28,6 @@ nivel_usuario INTEGER,
 data_criacao_usuario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Administrador Supremo", "66666666666", "admsupremoweblab21512020@gmail.com", "5843QA7DR4R6A8D@56*%ATYBXLO&12", "usuario-padrao.png", "1");
-INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Ludmila Osório", "12345678910", "ludmila.niedack@ifms.edu.br", "W50!H8&&UD3#*YRN5$08961@#14666", "ludmila.jpeg", "1");
-INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Andréia Montani", "12345678910", "andreia.basaglia@ifms.edu.br", "74910F4W5A1U!83$%XRYQ272*KV529", "andreia.jpeg", "1");
 
 CREATE TABLE permanencia (
 id_permanencia INTEGER PRIMARY KEY AUTO_INCREMENT,
