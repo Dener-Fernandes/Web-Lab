@@ -60,6 +60,9 @@
                 </div>
                 <div class="col-md-6">
                   <h3 class="text-center">Cadastrar-se</h3>
+                  <%if (cadastrado) {%>
+                    <h4 class="text-center text-success"><b>CADASTRO REALIZADO COM SUCESSO!</b></h4>
+                  <%}%>  
                   <form action="/cadastro_usuario" method="POST">
                     <%if (validacao.length > 0) {%>
                       <%for (let i = 0; i < validacao.length; i++) {%>
@@ -97,7 +100,7 @@
                           <span class="text-danger">Campo vazio!</span>
                         <%}%>  
                         <%if (validacao[i].msg == "4") {%>
-                          <span class="text-danger">Tamanho inválido!</span>
+                          <span class="text-danger">Tamanho inválido (Mínimo 5 dígitos)!</span>
                         <%}%>
                         <%if (validacao[i].msg == "5") {%>
                           <span class="text-danger">E-mail inválido!</span>
@@ -114,7 +117,7 @@
                           <span class="text-danger">Campo vazio!</span>
                         <%}%>  
                         <%if (validacao[i].msg == "7") {%>
-                          <span class="text-danger">Tamanho inválido!</span>
+                          <span class="text-danger">Tamanho inválido (Mínimo 5 dígitos)!</span>
                         <%}%>
                         <%if (validacao[i].msg == "8") {%>
                           <span class="text-danger">E-mail inválido!</span>
@@ -136,7 +139,7 @@
                           <span class="text-danger">Campo vazio!</span>
                         <%}%>  
                         <%if (validacao[i].msg == "10") {%>
-                          <span class="text-danger">Tamanho inválido!</span>
+                          <span class="text-danger">Tamanho inválido (Mínimo 8 dígitos)!</span>
                         <%}%>
                       <%}%>  
                     <%}%>
@@ -150,7 +153,7 @@
                           <span class="text-danger">Campo vazio!</span>
                         <%}%>  
                         <%if (validacao[i].msg == "12") {%>
-                          <span class="text-danger">Tamanho inválido!</span>
+                          <span class="text-danger">Tamanho inválido (Mínimo 8 dígitos)!</span>
                         <%}%>
                       <%}%>  
                     <%}%>

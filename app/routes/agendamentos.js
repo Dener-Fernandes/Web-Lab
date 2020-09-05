@@ -15,6 +15,10 @@ module.exports = function (app) {
         app.app.controllers.agendamentos.insertAgendamento(app, req, res);
     });
 
+    app.get("/salvar_agendamento", function (req, res) {
+        app.app.controllers.agendamentos.agendamentos(app, req, res);
+    });
+
     app.get("/lista_agendamentos", function (req, res) {
         app.app.controllers.agendamentos.getAgendamentos(app, req, res);
     });

@@ -2,7 +2,7 @@ CREATE DATABASE web_lab;
 USE web_lab;
 
 CREATE TABLE horario (
-id_horario INTEGER PRIMARY KEY KEY AUTO_INCREMENT,
+id_horario INTEGER PRIMARY KEY AUTO_INCREMENT,
 data_horario VARCHAR(10),
 status_horario VARCHAR(20),
 horario VARCHAR(15)
@@ -27,6 +27,12 @@ imagem_usuario VARCHAR(60),
 nivel_usuario INTEGER,
 data_criacao_usuario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Administrador Supremo", "66666666666", "admsupremoweblab21512020@gmail.com", "5843QA7DR4R6A8D@56*%ATYBXLO&12", "usuario-padrao.png", "1");
+INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Ludmila Osório", "12345678910", "ludmila.niedack@ifms.edu.br", "W50!H8&&UD3#*YRN5$08961@#14666", "ludmila.jpeg", "1");
+INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Andréia Montani", "12345678910", "andreia.basaglia@ifms.edu.br", "74910F4W5A1U!83$%XRYQ272*KV529", "andreia.jpeg", "1");
+INSERT INTO usuario (status_usuario, nome_usuario, cpf_usuario, email_usuario, senha_usuario, imagem_usuario, nivel_usuario) VALUES("ATIVADO", "Vinicius Camacam", "12345678910", "vinicingostosin@gmail.com", "baianozzzzzz2424", "usuario-padrao.png", "2");
+
 
 CREATE TABLE permanencia (
 id_permanencia INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -61,6 +67,7 @@ descricao_laboratorio TEXT,
 id_usuario INTEGER,
 FOREIGN KEY(id_usuario) REFERENCES usuario (id_usuario)
 );
+UPDATE laboratorio SET nome_laboratorio = "LABORATÓRIO DE QUÍMICA/MATEMÁTICA" WHERE id_laboratorio = 2;
 
 INSERT INTO laboratorio (nome_laboratorio, imagem_laboratorio, id_usuario) VALUES ("LABORATÓRIO DE FÍSICA", "Wiped Out.jpg", "2");
 INSERT INTO laboratorio (nome_laboratorio, imagem_laboratorio, id_usuario) VALUES ("LABORATÓRIO DE QUÍMICA", "AM.jpg", "3");

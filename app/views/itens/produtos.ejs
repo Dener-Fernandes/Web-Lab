@@ -168,7 +168,7 @@
                         <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
                           <div class="col-md-3">
                             <ul class="list-group borda2 text-center mt-1">
-                              <li class="list-group-item borda2"><img src="img/imagens-produtos/<%=produtos[i].imagem_produto%>" class="img-fluid imagem-produto"></li>
+                              <li class="list-group-item borda2"><img src="img/imagens-produtos/<%=produtos[i].imagem_produto%>" class="img-fluid imagem-produto" alt="Imagem indisponível"></li>
                               <li class="list-group-item borda2 bg-success text-white"><%=produtos[i].status_produto%></li>
                               <li class="list-group-item borda2"><%=produtos[i].nome_produto%></li>
                               <li class="list-group-item borda2"><%=produtos[i].formula_produto%></li>

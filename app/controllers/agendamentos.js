@@ -22,15 +22,12 @@ module.exports.searchAgendamento = function (app, req, res) {
             let data_agendamento = req.body.data_agendamento;
             if (data_agendamento) {
                 let connection = app.config.dbConnection();
-                let horarioModel = new app.app.models.HorarioDAO(connection);
                 let agendamentoModel = new app.app.models.AgendamentoDAO(connection);
 
                 try {
                     agendamentoModel.searchAgendamento(data_agendamento, function (error, result) {
-                       horarioModel.getOnlyHorarios(function (error2, result2) {
                         result = converter(result);
-                        res.render("agendamentos/lista_agendamentos", { nivelUsuario: req.session.nivelUsuario, agendamentos: result, horarios: result2 });
-                       });
+                        res.render("agendamentos/lista_agendamentos", { nivelUsuario: req.session.nivelUsuario, agendamentos: result});
                     });
                 } catch (error) {
                     res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
@@ -61,8 +58,6 @@ module.exports.searchAgendamento = function (app, req, res) {
         res.redirect("/");
     }
 }
-
-
 
 module.exports.getHorarios = function (app, req, res) {
     if (req.session.loggedIn) {
@@ -120,12 +115,10 @@ module.exports.getHorarios = function (app, req, res) {
 }
 
 module.exports.insertAgendamento = function (app, req, res) {
-    // let data_agendamento;
     let data_horario;
     let horario = req.body.horario;
     let id_laboratorio;
     if (req.body.data && req.body.horario && req.body.laboratorio_agendamento) {
-        // data_agendamento = req.body.data;
         data_horario = req.body.data;
         horario = req.body.horario;
         id_laboratorio = req.body.laboratorio_agendamento;
@@ -178,19 +171,20 @@ module.exports.insertAgendamento = function (app, req, res) {
     let erros = req.validationErrors();
     if (erros) {
         let agendamento = req.body;
-        try {
-            horarioModel.getHorarios(data_agendamento, function (error, result) {
-                produtoModel.getProdutos(function (error2, result2) {
-                    equipamentoModel.getEquipamentos(function (error3, result3) {
-                        motivoModel.getMotivos(function (error4, result4) {
-                            res.render("agendamentos/horarios", { usuario: id_usuario, nivelUsuario: req.session.nivelUsuario, horarios: result, produtos: result2, equipamentos: result3, motivos: result4, data: data_horario, agendamento: agendamento, validacao: erros, validacaoCancelamento: {} });
-                        });
+        horarioModel.getHorarios(id_laboratorio, data_horario, function (error, result) {
+            produtoModel.getProdutos(function (error2, result2) {
+                equipamentoModel.getEquipamentos(function (error3, result3) {
+                    motivoModel.getMotivos(function (error4, result4) {
+                        res.render("agendamentos/horarios", { usuario: id_usuario, nivelUsuario: req.session.nivelUsuario, horarios: result, produtos: result2, equipamentos: result3, motivos: result4, data: data_horario, agendamento: agendamento, validacao: erros, laboratorio_agendamento: id_laboratorio, validacaoCancelamento: {} });
                     });
                 });
             });
-        } catch (error) {
-            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
-        }
+        });
+        // try {
+           
+        // } catch (error) {
+        //     res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        // }
         return; // Impedindo que o resto do código seja executado.
     }
     // Validação
@@ -281,15 +275,12 @@ module.exports.getAgendamentos = function (app, req, res) {
     if (req.session.loggedIn) {
         if (req.session.nivelUsuario == "1") {
             let connection = app.config.dbConnection();
-            let horarioModel = new app.app.models.HorarioDAO(connection);
             let agendamentoModel = new app.app.models.AgendamentoDAO(connection);
 
             try {
                 agendamentoModel.getAgendamentos(function (error, result) {
-                    horarioModel.getOnlyHorarios(function (error2, result2) {
-                        result = converter(result);
-                        res.render("agendamentos/lista_agendamentos", { nivelUsuario: req.session.nivelUsuario, agendamentos: result, horarios: result2 });
-                    });
+                    result = converter(result);
+                    res.render("agendamentos/lista_agendamentos", { nivelUsuario: req.session.nivelUsuario, agendamentos: result });
                 });
             } catch (error) {
                 res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();

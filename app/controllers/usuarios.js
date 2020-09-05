@@ -172,11 +172,11 @@ module.exports.insertUsuario = function (app, req, res) {
     }
 
     if (validacao) {
-        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha});
+        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha, cadastrado: false});
         return;
     }
     if (validacaoCpf || validacaoEmail || validacaoSenha) {
-        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha});
+        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha, cadastrado: false});
         return;
     }
 
@@ -192,7 +192,7 @@ module.exports.insertUsuario = function (app, req, res) {
 
     try {
         usuarioModel.insertUsuario(usuario, function (error, result) {
-            res.redirect("/");
+            res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: true});
         });
     } catch (error) {
         res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();

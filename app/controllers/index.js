@@ -1,5 +1,5 @@
 module.exports.Index = function (app, req, res) {
-    res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}});
+    res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false});
 }
 
 module.exports.Login = function (app, req, res) {
@@ -21,11 +21,11 @@ module.exports.Login = function (app, req, res) {
                         res.redirect("/home");
                     }
                     else {
-                        res.render("home/index", {resultado, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}});    
+                        res.render("home/index", {resultado, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false});    
                     }
                 }
                 else {
-                    res.render("home/index", {resultado, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}});
+                    res.render("home/index", {resultado, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false});
                 }
             });
         } catch (error) {

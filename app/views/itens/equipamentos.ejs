@@ -167,7 +167,7 @@
                         <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
                           <div class="col-md-3">
                             <ul class="list-group borda2 text-center mt-1">
-                              <li class="list-group-item borda2"><img src="img/imagens-equipamentos/<%=equipamentos[i].imagem_equipamento%>" class="img-fluid imagem-equipamento"></li>
+                              <li class="list-group-item borda2"><img src="img/imagens-equipamentos/<%=equipamentos[i].imagem_equipamento%>" class="img-fluid imagem-equipamento" alt="Imagem indisponível"></li>
                               <li class="list-group-item borda2 bg-success text-white"><%=equipamentos[i].status_equipamento%></li>
                               <li class="list-group-item borda2"><%=equipamentos[i].nome_equipamento%></li>
                               <%if (nivelUsuario == "1") {%>

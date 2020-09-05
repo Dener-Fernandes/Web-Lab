@@ -11,6 +11,10 @@ module.exports = function (app){
         app.app.controllers.usuarios.insertUsuario(app, req, res);
     });
 
+    app.get("/cadastro_usuario", function (req, res) {
+        app.app.controllers.index.Index(app, req, res);
+    });
+
     app.post("/efetuar_cadastro_usuario", function (req, res) {
         app.app.controllers.usuarios.insertCadastroUsuario(app, req, res);
     });
