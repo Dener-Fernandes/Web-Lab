@@ -138,8 +138,8 @@ module.exports.insertAgendamento = function (app, req, res) {
     let id_horario;
     let transporter = app.config.emailSend;
     let email = {
-        from: "Administrador Web-Lab <admsupremoweblab21512020@gmail.com>",
-        to: "admsupremoweblab21512020@gmail.com",
+        from: "Administrador Web-Lab <>",
+        to: "",
         subject: "Solicitação de agendamento",
         text: "",
     }
@@ -485,7 +485,7 @@ module.exports.deleteAgendamento = function (app, req, res) {
                                     let email_usuario = result3[0].email_usuario;
                                     let mensagem = req.body.descricao_cancelamento;
                                     let email = {
-                                        from: "Administrador Web-Lab <admsupremoweblab21512020@gmail.com>",
+                                        from: "Administrador Web-Lab <>",
                                         to: email_usuario,
                                         subject: "Sua solicitação de agendamento foi recusada!",
                                         text: mensagem
@@ -503,8 +503,8 @@ module.exports.deleteAgendamento = function (app, req, res) {
                                     let nome_usuario = result3[0].nome_usuario;
                                     let mensagem = `O usuário ${nome_usuario} cancelou o agendamento da data: ${data}, horario: ${horario}.`;
                                     let email = {
-                                        from: "Administrador Web-Lab <admsupremoweblab21512020@gmail.com>",
-                                        to: "admsupremoweblab21512020@gmail.com",
+                                        from: "Administrador Web-Lab <>",
+                                        to: "",
                                         subject: "Agendamento cancelado!",
                                         text: mensagem
                                     }
@@ -560,7 +560,7 @@ module.exports.confirmarAgendamento = function (app, req, res) {
                         let email_usuario = result4[0].email_usuario;
                         let mensagem = `Sua solicitação de agendamento da data: ${data}, horario: ${horario}, foi aceita!`;
                         let email = {
-                            from: "Administrador Web-Lab <admsupremoweblab21512020@gmail.com>",
+                            from: "Administrador Web-Lab <>",
                             to: email_usuario,
                             subject: "Solicitação de agendamento confirmada!",
                             text: mensagem
