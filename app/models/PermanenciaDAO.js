@@ -1,11 +1,12 @@
 function PermanenciaDAO(connection) {
     this._connection = connection;
+    
+    PermanenciaDAO.prototype.getPermanencias = function (callback) {
+        this._connection.query("SELECT * FROM permanencia", callback);
+    }
 
     PermanenciaDAO.prototype.getPermanencia = function (id_usuario, callback) {
         this._connection.query("SELECT * FROM permanencia WHERE id_usuario =" + id_usuario, callback);
-    }
-    PermanenciaDAO.prototype.getPermanencias = function (callback) {
-        this._connection.query("SELECT * FROM permanencia", callback);
     }
 
     PermanenciaDAO.prototype.insertPermanencia = function (permanencia, callback) {

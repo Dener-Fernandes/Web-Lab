@@ -4,13 +4,13 @@ function ProdutoDAO(connection) {
     ProdutoDAO.prototype.getProdutos = function (callback) {
         this._connection.query("SELECT * FROM produto INNER JOIN laboratorio ON produto.pertence_laboratorio = laboratorio.id_laboratorio ORDER BY data_criacao_produto DESC", callback);
     }
+    
+    ProdutoDAO.prototype.getProduto = function (id_produto, callback) {
+        this._connection.query("SELECT * FROM produto WHERE id_produto = " + id_produto, callback);
+    }
 
     ProdutoDAO.prototype.searchProduto = function (nome_produto, callback) {
         this._connection.query("SELECT * FROM produto INNER JOIN laboratorio ON produto.pertence_laboratorio = laboratorio.id_laboratorio WHERE nome_produto LIKE ?", "%" + nome_produto + "%", callback);
-    }
-
-    ProdutoDAO.prototype.getProduto = function (id_produto, callback) {
-        this._connection.query("SELECT * FROM produto WHERE id_produto = " + id_produto, callback);
     }
 
     ProdutoDAO.prototype.insertProduto = function (produto, callback) {

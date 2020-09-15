@@ -172,11 +172,11 @@ module.exports.insertUsuario = function (app, req, res) {
     }
 
     if (validacao) {
-        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha, cadastrado: false});
+        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha, cadastrado: false, cpfCadastrado: {}});
         return;
     }
     if (validacaoCpf || validacaoEmail || validacaoSenha) {
-        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha, cadastrado: false});
+        res.render("home/index", {resultado, validacao, validacaoCpf, validacaoEmail, validacaoSenha, cadastrado: false, cpfCadastrado: {}});
         return;
     }
 
@@ -191,9 +191,18 @@ module.exports.insertUsuario = function (app, req, res) {
     }
 
     try {
-        usuarioModel.insertUsuario(usuario, function (error, result) {
-            res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: true});
+        usuarioModel.getUsuarios(function (error, result) {
+            for (let i = 0; i < result1.length; i++) {
+                if (result[i].cpf_usuario == usuario.cpf_usuario) {
+                    res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false, cpfCadastrado: "1"});
+                    return;
+                }
+            }
+            usuarioModel.insertUsuario(usuario, function (error2, result2) {
+                res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: true, cpfCadastrado: {}});
+            });
         });
+        
     } catch (error) {
         res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
     }
@@ -203,7 +212,7 @@ module.exports.paginaCadastroUsuarios = function (app, req, res) {
     if (req.session.loggedIn) {
         if (req.session.nivelUsuario == "1") {
 
-            res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}});
+            res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
         }
         else {
             res.redirect("/home");
@@ -300,15 +309,15 @@ module.exports.insertCadastroUsuario = function (app, req, res) {
     }
 
     if (validacaoUsuario) {
-        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}});
+        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
         return;
     }
     if (validacaoCpfUsuario || validacaoEmailUsuario || validacaoSenhaUsuario) {
-        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}});
+        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
         return;
     }
     if (validacaoImgUsuario) {
-        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}});
+        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
         return
     }
 
@@ -325,15 +334,23 @@ module.exports.insertCadastroUsuario = function (app, req, res) {
         nivel_usuario,
     }
 
-    file.mv("./app/public/img/imagens-usuarios/" + imagem_usuario, function (error0) {
-        try {
-            usuarioModel.insertUsuario(usuario, function (error, result) {
-                res.redirect("/lista_usuarios");
+    try {
+        usuarioModel.getUsuarios(function (error, result) {
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].cpf_usuario == usuario.cpf_usuario) { 
+                    res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}, cpfCadastradoUsuarioComum: "1", cpfCadastradoAdm: {}});
+                    return;
+                }
+            }
+            file.mv("./app/public/img/imagens-usuarios/" + imagem_usuario, function (error0) {
+                usuarioModel.insertUsuario(usuario, function (error2, result2) {
+                    res.redirect("/lista_usuarios");
+                });
             });
-        } catch (error) {
-            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
-        }
-    });
+        });
+    } catch (error) {
+        res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+    }
 }
 
 module.exports.insertCadastroAdm = function (app, req, res) {
@@ -421,16 +438,16 @@ module.exports.insertCadastroAdm = function (app, req, res) {
     }
 
     if (validacaoAdm) {
-        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm, validacaoAdm, validacaoCpfAdm, validacaoEmailAdm, validacaoSenhaAdm});
+        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm, validacaoAdm, validacaoCpfAdm, validacaoEmailAdm, validacaoSenhaAdm, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
         return;
     }
     if (validacaoCpfAdm || validacaoEmailAdm || validacaoSenhaAdm) {
-        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm, validacaoAdm, validacaoCpfAdm, validacaoEmailAdm, validacaoSenhaAdm});
+        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm, validacaoAdm, validacaoCpfAdm, validacaoEmailAdm, validacaoSenhaAdm, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
         return;
     }
     if (validacaoImgAdm) {
-        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm, validacaoAdm, validacaoCpfAdm, validacaoEmailAdm, validacaoSenhaAdm});
-        return
+        res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario, validacaoUsuario, validacaoCpfUsuario, validacaoEmailUsuario, validacaoSenhaUsuario, validacaoImgAdm, validacaoAdm, validacaoCpfAdm, validacaoEmailAdm, validacaoSenhaAdm, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: {}});
+        return;
     }
 
     let file = req.files.imagem_adm;
@@ -446,15 +463,23 @@ module.exports.insertCadastroAdm = function (app, req, res) {
         nivel_usuario,
     }
 
-    file.mv("./app/public/img/imagens-usuarios/" + imagem_usuario, function (error0) {
-        try {
-            usuarioModel.insertUsuario(usuario, function (error, result) {
-                res.redirect("/lista_usuarios");
+    try {
+        usuarioModel.getUsuarios(function (error, result) {
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].cpf_usuario == usuario.cpf_usuario) {
+                    res.render("usuarios/cadastro_usuarios", {validacaoImgUsuario: {}, validacaoUsuario: {}, validacaoCpfUsuario: {}, validacaoEmailUsuario: {}, validacaoSenhaUsuario: {}, validacaoImgAdm: {}, validacaoAdm: {}, validacaoCpfAdm: {}, validacaoEmailAdm: {}, validacaoSenhaAdm: {}, cpfCadastradoUsuarioComum: {}, cpfCadastradoAdm: "1"});
+                    return;
+                }
+            }
+            file.mv("./app/public/img/imagens-usuarios/" + imagem_usuario, function (error0) {
+                usuarioModel.insertUsuario(usuario, function (error2, result2) {
+                    res.redirect("/lista_usuarios");
+                });
             });
-        } catch (error) {
-            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
-        }
-    });
+        });
+    } catch (error) {
+        res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+    }
 }
 
 module.exports.updateUsuario = function (app, req, res) {
@@ -598,6 +623,7 @@ module.exports.updateUsuario = function (app, req, res) {
 module.exports.deleteUsuario = function (app, req, res) {
     let id_usuario_atual = req.session.usuario;
     let id_usuario = req.body.id_excluir_usuario;
+    let nivelUser = req.body.nivel_usuario;
     if (req.body.id_excluir_usuario) {
         id_usuario = req.body.id_excluir_usuario;
     }
@@ -609,9 +635,9 @@ module.exports.deleteUsuario = function (app, req, res) {
     let usuarioModel = new app.app.models.UsuarioDAO(connection);
     let permanenciaModel = new app.app.models.PermanenciaDAO(connection);
 
-    try {
-        usuarioModel.deleteUsuario(id_usuario, function (error, result) {
-            if (result[0].nivel_usuario == "1") {
+    if (nivelUser == "1") {
+        try {
+            usuarioModel.deleteUsuario(id_usuario, function (error, result) {
                 permanenciaModel.deletePermanencia(id_usuario, function (error2, result2) {
                     if (id_usuario_atual == id_usuario) {
                         req.session.destroy();
@@ -621,18 +647,18 @@ module.exports.deleteUsuario = function (app, req, res) {
                         res.redirect("/lista_usuarios");
                     }
                 });
-            }
-            else {
-                if (id_usuario_atual == id_usuario) {
-                    req.session.destroy();
-                    res.redirect("/");
-                }
-                else {
-                    res.redirect("/lista_usuarios");
-                }
-            }
-         });
-    } catch (error) {
-        res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+            });
+        } catch (error) {
+            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        }
+    }
+    else {
+        try {
+            usuarioModel.deleteUsuario(id_usuario, function (error, result) {
+                res.redirect("/lista_usuarios");
+             });
+        } catch (error) {
+            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        }
     }
 }

@@ -5,12 +5,12 @@ function AgendamentoDAO(connection) {
         this._connection.query("SELECT * FROM agendamento INNER JOIN usuario ON agendamento.id_usuario = usuario.id_usuario INNER JOIN horario ON agendamento.id_horario = horario.id_horario INNER JOIN laboratorio ON agendamento.id_laboratorio = laboratorio.id_laboratorio INNER JOIN motivo_agendamento ON agendamento.id_motivo_agendamento = motivo_agendamento.id_motivo_agendamento ORDER BY data_criacao_agendamento DESC", callback);
     }
 
-    AgendamentoDAO.prototype.searchAgendamento = function(data_agendamento, callback) {
-        this._connection.query("SELECT * FROM agendamento INNER JOIN usuario ON agendamento.id_usuario = usuario.id_usuario INNER JOIN horario ON agendamento.id_horario = horario.id_horario INNER JOIN laboratorio ON agendamento.id_laboratorio = laboratorio.id_laboratorio WHERE horario.data_horario =?", data_agendamento, callback);
-    }
-
     AgendamentoDAO.prototype.getAgendamento = function(id_agendamento, callback) {
         this._connection.query("SELECT * FROM agendamento WHERE id_agendamento =" + id_agendamento, callback);
+    }
+
+    AgendamentoDAO.prototype.searchAgendamento = function(data_agendamento, callback) {
+        this._connection.query("SELECT * FROM agendamento INNER JOIN usuario ON agendamento.id_usuario = usuario.id_usuario INNER JOIN horario ON agendamento.id_horario = horario.id_horario INNER JOIN laboratorio ON agendamento.id_laboratorio = laboratorio.id_laboratorio WHERE horario.data_horario =?", data_agendamento, callback);
     }
 
     AgendamentoDAO.prototype.insertAgendamento = function (agendamentoDados, callback) {

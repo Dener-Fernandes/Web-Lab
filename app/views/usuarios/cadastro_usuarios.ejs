@@ -173,6 +173,11 @@
                           <%if (validacaoCpfUsuario == "0") {%>
                             <span class="text-danger">CPF inválido!</span>
                           <%}%>  
+                        <%}%>
+                        <%if (cpfCadastradoUsuarioComum.length > 0) {%>
+                          <%if (cpfCadastradoUsuarioComum == "1") {%>
+                            <span class="text-danger">CPF já cadastrado!</span>
+                          <%}%>  
                         <%}%>  
                         <div class="form-group">
                           <label class="bmd-label-floating">CPF</label>
@@ -306,6 +311,11 @@
                         <%if (validacaoCpfAdm.length > 0) {%>
                           <%if (validacaoCpfAdm == "0") {%>
                             <span class="text-danger">CPF inválido!</span>
+                          <%}%>  
+                        <%}%>
+                        <%if (cpfCadastradoAdm.length > 0) {%>
+                          <%if (cpfCadastradoAdm == "1") {%>
+                            <span class="text-danger">CPF já cadastrado!</span>
                           <%}%>  
                         <%}%>  
                         <div class="form-group">

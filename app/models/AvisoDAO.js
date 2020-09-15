@@ -4,6 +4,7 @@ function AvisoDAO(connection) {
     AvisoDAO.prototype.getAvisos = function (callback) {
         this._connection.query("SELECT * FROM aviso INNER JOIN usuario ON aviso.id_usuario = usuario.id_usuario ORDER BY data_criacao_aviso DESC", callback);
     }
+    
     AvisoDAO.prototype.getAviso = function (id_aviso, callback) {
         this._connection.query("SELECT * FROM aviso INNER JOIN usuario ON aviso.id_usuario = usuario.id_usuario WHERE id_aviso =" + id_aviso, callback);
     }

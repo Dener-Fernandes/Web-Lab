@@ -90,6 +90,11 @@
                         <span class="text-danger">CPF inválido!</span>
                       <%}%>  
                     <%}%>  
+                    <%if (cpfCadastrado.length > 0) {%>
+                      <%if (cpfCadastrado == "1") {%>
+                        <span class="text-danger">CPF já cadastrado!</span>
+                      <%}%>  
+                    <%}%>  
                     <div class="form-group">
                       <label class="bmd-label-floating">CPF</label>
                       <input type="text" class="form-control" name="cpf_usuario_cadastro"/>

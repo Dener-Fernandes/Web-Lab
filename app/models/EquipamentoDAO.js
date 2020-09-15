@@ -5,12 +5,12 @@ function EquipamentoDAO(connection) {
         this._connection.query("SELECT * FROM equipamento INNER JOIN laboratorio ON equipamento.pertence_laboratorio = laboratorio.id_laboratorio ORDER BY data_criacao_equipamento DESC", callback);
     }
 
-    EquipamentoDAO.prototype.searchEquipamento = function (nome_equipamento, callback) {
-        this._connection.query("SELECT * FROM equipamento INNER JOIN laboratorio ON equipamento.pertence_laboratorio = laboratorio.id_laboratorio WHERE nome_equipamento LIKE ?", "%" + nome_equipamento + "%", callback);
-    }
-
     EquipamentoDAO.prototype.getEquipamento = function (id_equipamento, callback) {
         this._connection.query("SELECT * FROM equipamento WHERE id_equipamento =" + id_equipamento, callback);
+    }
+
+    EquipamentoDAO.prototype.searchEquipamento = function (nome_equipamento, callback) {
+        this._connection.query("SELECT * FROM equipamento INNER JOIN laboratorio ON equipamento.pertence_laboratorio = laboratorio.id_laboratorio WHERE nome_equipamento LIKE ?", "%" + nome_equipamento + "%", callback);
     }
 
     EquipamentoDAO.prototype.insertEquipamento = function (equipamento, callback) {

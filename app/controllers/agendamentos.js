@@ -93,6 +93,7 @@ module.exports.getHorarios = function (app, req, res) {
             } catch (error) {
                 res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
             }
+            return;
         }
 
         try {
@@ -132,6 +133,7 @@ module.exports.insertAgendamento = function (app, req, res) {
     let nome_produto;
     let nome_equipamento;
     let id_usuario = req.session.usuario;
+    let nivelUser = req.session.nivelUsuario;
     let status_horario = "EM ANÁLISE";
     let id_horario;
     let transporter = app.config.emailSend;
@@ -170,21 +172,20 @@ module.exports.insertAgendamento = function (app, req, res) {
 
     let erros = req.validationErrors();
     if (erros) {
-        let agendamento = req.body;
-        horarioModel.getHorarios(id_laboratorio, data_horario, function (error, result) {
-            produtoModel.getProdutos(function (error2, result2) {
-                equipamentoModel.getEquipamentos(function (error3, result3) {
-                    motivoModel.getMotivos(function (error4, result4) {
-                        res.render("agendamentos/horarios", { usuario: id_usuario, nivelUsuario: req.session.nivelUsuario, horarios: result, produtos: result2, equipamentos: result3, motivos: result4, data: data_horario, agendamento: agendamento, validacao: erros, laboratorio_agendamento: id_laboratorio, validacaoCancelamento: {} });
+        let agendamento = req.body;  
+        try {
+            horarioModel.getHorarios(id_laboratorio, data_horario, function (error, result) {
+                produtoModel.getProdutos(function (error2, result2) {
+                    equipamentoModel.getEquipamentos(function (error3, result3) {
+                        motivoModel.getMotivos(function (error4, result4) {
+                            res.render("agendamentos/horarios", { usuario: id_usuario, nivelUsuario: req.session.nivelUsuario, horarios: result, produtos: result2, equipamentos: result3, motivos: result4, data: data_horario, agendamento: agendamento, validacao: erros, laboratorio_agendamento: id_laboratorio, validacaoCancelamento: {} });
+                        });
                     });
                 });
             });
-        });
-        // try {
-           
-        // } catch (error) {
-        //     res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
-        // }
+        } catch (error) {
+            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        }
         return; // Impedindo que o resto do código seja executado.
     }
     // Validação
@@ -202,27 +203,43 @@ module.exports.insertAgendamento = function (app, req, res) {
         horario,
         status_horario,
     }
-    try {
-        horarioModel.insertHorario(horarioDados, function (error, result) {
-            agendamentoDados.id_horario = result[0].id_horario;
-            agendamentoModel.insertAgendamento(agendamentoDados, function (error2, result2) {
-                usuarioModel.getUsuario(id_usuario, function (error3, result3) {
-                    let usuario_nome = result3[0].nome_usuario;
-                    let mensagem = `O usuário ${usuario_nome} solicitou agendamento para o dia: ${data_horario}, horario: ${horario}.`;
-                    email.text = mensagem;
-                    transporter.sendMail(email, function (error4, info) {
-                        if (error4) {
-                            console.log(error4);
-                        }
-                        else {
-                            res.redirect("/agendamentos");
-                        }
+
+    if (nivelUser == "1") {
+        try {
+            horarioDados.status_horario = "CONFIRMADO";
+            horarioModel.insertHorario(horarioDados, function (error, result) {
+                agendamentoDados.id_horario = result[0].id_horario;
+                agendamentoModel.insertAgendamento(agendamentoDados, function (error2, result2) {
+                    res.redirect("/agendamentos");
+                });
+            });
+        } catch (error) {
+            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        }
+    }
+    else {
+        try {
+            horarioModel.insertHorario(horarioDados, function (error, result) {
+                agendamentoDados.id_horario = result[0].id_horario;
+                agendamentoModel.insertAgendamento(agendamentoDados, function (error2, result2) {
+                    usuarioModel.getUsuario(id_usuario, function (error3, result3) {
+                        let usuario_nome = result3[0].nome_usuario;
+                        let mensagem = `O usuário ${usuario_nome} solicitou agendamento para o dia: ${data_horario}, horario: ${horario}.`;
+                        email.text = mensagem;
+                        transporter.sendMail(email, function (error4, info) {
+                            if (error4) {
+                                console.log(error4);
+                            }
+                            else {
+                                res.redirect("/agendamentos");
+                            }
+                        });
                     });
                 });
             });
-        });
-    } catch (error) {
-        res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        } catch (error) {
+            res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
+        }
     }
 
     function remover(vetor) {
