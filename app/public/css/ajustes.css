@@ -1,11 +1,11 @@
 /* 9991px */
-@media(max-width: 991px){
+@media(max-width: 991px) {
     #pesquisar_id, #botaoPesquisar_id{
         margin-right: 35px;
         margin-bottom: 10px;
     }
 }
-@media(max-width: 991px){
+@media(max-width: 991px) {
     #botaoPesquisar_id{
         margin-right: 45px;
         margin-bottom: 10px;
@@ -21,35 +21,35 @@
     height: 200px !important;
 }
 
-#modal2{
+#modal2 {
     overflow-y: scroll;
 }
 
-.img-usuario, .img-tecnico{
+.img-usuario, .img-tecnico {
     padding-top: 35px;
 }
-.informacao{
+.informacao {
     padding-top: 20px;
 }
 
-.borda{
+.borda {
     border: solid gray;
 }
-.borda2{
+.borda2 {
     border: 1px solid gray;
 }
 
-@media(max-width: 767px){
+@media(max-width: 767px) {
     .informacao{
         padding-top: 0px;
     }
 }
 
-.visivel{
+.visivel {
     display: block;
 }
 
-.invisivel{
+.invisivel {
     display: none;
 }
 
@@ -143,7 +143,7 @@ input[type="file"] {
     width: 150px;
     border-radius: 100px;
 }
-#id_label_foto{
+#id_label_foto {
     position: absolute;
     right: 15px;
     bottom: 0px;
