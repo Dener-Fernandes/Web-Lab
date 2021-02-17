@@ -134,6 +134,7 @@ module.exports.insertPermanencia = function (app, req, res) {
         res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
     }
 }
+
 module.exports.updatePermanencia = function (app, req, res) {
     let segunda_feira_manha = req.body.segunda_feira_manha_atualizacao;
     let terca_feira_manha = req.body.terca_feira_manha_atualizacao;
