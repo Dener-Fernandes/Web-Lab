@@ -272,7 +272,6 @@ module.exports.getAgendamento = function (app, req, res) {
     let equipamentoModel = new app.app.models.EquipamentoDAO(connection);
     let motivoModel = new app.app.models.MotivoDAO(connection);
 
-
     try {
         agendamentoModel.getAgendamento(id_agendamento, function (error, result) {
             produtoModel.getProdutos(function (error2, result2) {
@@ -345,7 +344,6 @@ module.exports.updateAgendamento = function (app, req, res) {
     let produtoModel = new app.app.models.ProdutoDAO(connection);
     let equipamentoModel = new app.app.models.EquipamentoDAO(connection);
     let motivoModel = new app.app.models.MotivoDAO(connection);
-
 
     // Validação
     req.assert("motivo_agendamento_atualizacao", "2").isIn(["1", "2"]);
