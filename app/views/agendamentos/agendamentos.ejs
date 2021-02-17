@@ -1,195 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      Web Lab
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+      name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/calendar.css"/>
+    <link rel="stylesheet" href="css/ajustes.css"/>
+    <link rel="shortcut icon" href="img/imagens-weblab/weblab-icone.ico"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <!-- <link href="../assets/demo/demo.css" rel="stylesheet"/> -->
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Web Lab
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-    name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/calendar.css"/>
-  <link rel="stylesheet" href="css/ajustes.css"/>
-  <link rel="shortcut icon" href="img/imagens-weblab/weblab-icone.ico"/>
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <!-- <link href="../assets/demo/demo.css" rel="stylesheet"/> -->
-</head>
-
-<body onload="renderDate()">
-  <!--Menu-->
-  <div class="wrapper">
-    <div class="sidebar" data-color="green" data-background-color="black">
-      <div class="logo">
-        <a href="" class="simple-text logo-normal">
-          Web Lab
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item">
-            <form class="logout2" action="/logout" method="POST">
-              <button type="submit"><i class="material-icons nav-link">logout</i><p>Sair</p></button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/home">
-              <i class="material-icons">home</i>
-              <p>Página inicial</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario">
-              <i class="material-icons">person</i>
-              <p>Perfil de usuário</p>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/agendamentos">
-              <i class="material-icons">calendar_today</i>
-              <p>Agendamentos</p>
-            </a>
-          </li>  
-          <li class="nav-item">
-            <a class="nav-link" href="/tecnicos">
-              <i class="material-icons">supervisor_account</i>
-              <p>Técnicos dos laboratórios</p>
-            </a>
-          </li>
-          <%if (nivelUsuario == "1") {%>
-            <li class="nav-item">
-              <a class="nav-link" href="/pagina_cadastro_usuarios">
-                <i class="material-icons">assignment_ind</i>
-                <p>Cadastrar usuários</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cadastro_itens">
-                <i class="material-icons">assignment</i>
-                <p>Cadastrar itens</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cadastro_avisos">
-                <i class="material-icons">assignment_late</i>
-                <p>Cadastrar avisos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/lista_agendamentos">
-                <i class="material-icons">list</i>
-                <p>Lista de agendamentos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/lista_usuarios">
-                <i class="material-icons">people</i>
-                <p>Lista de usuários</p>
-              </a>
-            </li>
-          <%}%> 
-          <li class="nav-item">
-            <a class="nav-link" href="/equipamentos">
-              <i class="material-icons">build</i>
-              <p>Equipamentos</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/produtos">
-              <i class="material-icons">bubble_chart</i>
-              <p>Produtos</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/mural_avisos">
-              <i class="material-icons">notifications</i>
-              <p>Mural de avisos</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--Menu -->
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Agendamentos</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-            aria-expanded="false" aria-label="Toggle navigation" data-target="navigation-example">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
+  <body onload="renderDate()">
+    <!--Menu-->
+    <div class="wrapper">
+      <div class="sidebar" data-color="green" data-background-color="black">
+        <div class="logo">
+          <a href="" class="simple-text logo-normal">
+            Web Lab
+          </a>
         </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content mt-1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header bg-success">
-                  <div class="row">
-                    <div class="col-md-12 text-center">
-                      <h3 class="card-title text-white">Agendamentos</h3>
-                      <h4 class="card-subtitle text-white">Selecione um dia da semana!</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body pb-0">
-                  <div class="row">
-                    <div class="col-md-5 pl-0">
-                      <div>
-                        <h3>
-                          <h3 class="pl-2">Como agendar um horário</h3>
-                          <h4>
-                            <ol>
-                              <li>Selecione um dia da semana;</li>
-                              <li>Selecione um laboratório;</li>
-                              <li>Selecione um horário disponível;</li>
-                              <li>Preencha o formulário;</li>
-                              <li>Envie a solicitação de agendamento.</li>
-                            </ol>
-                          </h4>
-                        </h3>
-                        <h3 class="text-danger pl-3">IMPORTANTE!</h3>
-                        <p class="h4 pl-3">Um e-mail será enviado a você quando sua solicitação de agendamento for aceita ou recusada.</p>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item">
+              <form class="logout2" action="/logout" method="POST">
+                <button type="submit"><i class="material-icons nav-link">logout</i><p>Sair</p></button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home">
+                <i class="material-icons">home</i>
+                <p>Página inicial</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/usuario">
+                <i class="material-icons">person</i>
+                <p>Perfil de usuário</p>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/agendamentos">
+                <i class="material-icons">calendar_today</i>
+                <p>Agendamentos</p>
+              </a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link" href="/tecnicos">
+                <i class="material-icons">supervisor_account</i>
+                <p>Técnicos dos laboratórios</p>
+              </a>
+            </li>
+            <%if (nivelUsuario == "1") {%>
+              <li class="nav-item">
+                <a class="nav-link" href="/pagina_cadastro_usuarios">
+                  <i class="material-icons">assignment_ind</i>
+                  <p>Cadastrar usuários</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cadastro_itens">
+                  <i class="material-icons">assignment</i>
+                  <p>Cadastrar itens</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cadastro_avisos">
+                  <i class="material-icons">assignment_late</i>
+                  <p>Cadastrar avisos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lista_agendamentos">
+                  <i class="material-icons">list</i>
+                  <p>Lista de agendamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lista_usuarios">
+                  <i class="material-icons">people</i>
+                  <p>Lista de usuários</p>
+                </a>
+              </li>
+            <%}%> 
+            <li class="nav-item">
+              <a class="nav-link" href="/equipamentos">
+                <i class="material-icons">build</i>
+                <p>Equipamentos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produtos">
+                <i class="material-icons">bubble_chart</i>
+                <p>Produtos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/mural_avisos">
+                <i class="material-icons">notifications</i>
+                <p>Mural de avisos</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--Menu -->
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="javascript:void(0)">Agendamentos</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+              aria-expanded="false" aria-label="Toggle navigation" data-target="navigation-example">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content mt-1">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header bg-success">
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <h3 class="card-title text-white">Agendamentos</h3>
+                        <h4 class="card-subtitle text-white">Selecione um dia da semana!</h4>
                       </div>
                     </div>
-                    <div class="col-md-7">
-                      <div class="calendar">
-                        <div class="month">
-                          <div class="prev" onclick="moveDate('prev')">
-                            <span>&#10094;</span>
-                          </div>
-                          <div>
-                            <h2 id="month"></h2>
-                            <p id="date_str"></p>
-                          </div>
-                          <div class="next" onclick="moveDate('next')">
-                            <span>&#10095;</span>
-                          </div>
+                  </div>
+                  <div class="card-body pb-0">
+                    <div class="row">
+                      <div class="col-md-5 pl-0">
+                        <div>
+                          <h3>
+                            <h3 class="pl-2">Como agendar um horário</h3>
+                            <h4>
+                              <ol>
+                                <li>Selecione um dia da semana;</li>
+                                <li>Selecione um laboratório;</li>
+                                <li>Selecione um horário disponível;</li>
+                                <li>Preencha o formulário;</li>
+                                <li>Envie a solicitação de agendamento.</li>
+                              </ol>
+                            </h4>
+                          </h3>
+                          <h3 class="text-danger pl-3">IMPORTANTE!</h3>
+                          <p class="h4 pl-3">Um e-mail será enviado a você quando sua solicitação de agendamento for aceita ou recusada.</p>
                         </div>
-                        <div class="weekdays">
-                          <div>D</div>
-                          <div>S</div>
-                          <div>T</div>
-                          <div>Q</div>
-                          <div>Q</div>
-                          <div>S</div>
-                          <div>S</div>
-                        </div>
-                        <div class="days">
+                      </div>
+                      <div class="col-md-7">
+                        <div class="calendar">
+                          <div class="month">
+                            <div class="prev" onclick="moveDate('prev')">
+                              <span>&#10094;</span>
+                            </div>
+                            <div>
+                              <h2 id="month"></h2>
+                              <p id="date_str"></p>
+                            </div>
+                            <div class="next" onclick="moveDate('next')">
+                              <span>&#10095;</span>
+                            </div>
+                          </div>
+                          <div class="weekdays">
+                            <div>D</div>
+                            <div>S</div>
+                            <div>T</div>
+                            <div>Q</div>
+                            <div>Q</div>
+                            <div>S</div>
+                            <div>S</div>
+                          </div>
+                          <div class="days">
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -201,62 +201,60 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="modalLabel">Escolha o laboratorio</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/escolher_horario" method="POST">
-            <input type="text" name="data" id="data" class="invisivel" value=""/>
-            <%if (validacao.length > 0) {%>
-              <%for (let i = 0; i < validacao.length ; i++) {%>
-                <%if (validacao[i].msg == "0") {%>
-                <p class="text-danger">O laboratório é obrigatório!</p>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="modalLabel">Escolha o laboratorio</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/escolher_horario" method="POST">
+              <input type="text" name="data" id="data" class="invisivel" value=""/>
+              <%if (validacao.length > 0) {%>
+                <%for (let i = 0; i < validacao.length ; i++) {%>
+                  <%if (validacao[i].msg == "0") {%>
+                  <p class="text-danger">O laboratório é obrigatório!</p>
+                  <%}%>  
                 <%}%>  
-              <%}%>  
-            <%}%>
-            <h4>Laboratório</h4>
-            <select class="custom-select" name="laboratorio_agendamento">
-              <option value="">ESCOLHER</option>
-              <%if (laboratorios.length > 0) {%>
-                <%for (let i = 0; i < laboratorios.length; i++) {%>
-                  <option value="<%=laboratorios[i].id_laboratorio%>"><%=laboratorios[i].nome_laboratorio%></option>
+              <%}%>
+              <h4>Laboratório</h4>
+              <select class="custom-select" name="laboratorio_agendamento">
+                <option value="">ESCOLHER</option>
+                <%if (laboratorios.length > 0) {%>
+                  <%for (let i = 0; i < laboratorios.length; i++) {%>
+                    <option value="<%=laboratorios[i].id_laboratorio%>"><%=laboratorios[i].nome_laboratorio%></option>
+                  <%}%>  
                 <%}%>  
-              <%}%>  
-            </select>
-            <div class="row mt-5">
-              <button class="btn btn-danger col-12 col-md" data-dismiss="modal">FECHAR</button>
-              <button class="btn btn-success col-12 col-md">IR PARA A PÁGINA</button>
-            </div>
-          </form>
+              </select>
+              <div class="row mt-5">
+                <button class="btn btn-danger col-12 col-md" data-dismiss="modal">FECHAR</button>
+                <button class="btn btn-success col-12 col-md">IR PARA A PÁGINA</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="js/ajustes.js"></script>
-  <script src="js/calendar.js"></script>
-  <script src="js/core/jquery.min.js"></script>
-  <script src="js/core/popper.min.js"></script>
-  <script src="js/core/bootstrap-material-design.min.js"></script>
-  <script src="https://unpkg.com/default-passive-events"></script>
-  <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!--  Google Maps Plugin    -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
-  <!-- Chartist JS -->
-  <script src="js/plugins/chartist.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="js/material-dashboard.js?v=2.1.0"></script>
-</body>
-
+    <!--   Core JS Files   -->
+    <script src="js/ajustes.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://unpkg.com/default-passive-events"></script>
+    <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--  Google Maps Plugin    -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+    <!-- Chartist JS -->
+    <script src="js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="js/material-dashboard.js?v=2.1.0"></script>
+  </body>
 </html>
