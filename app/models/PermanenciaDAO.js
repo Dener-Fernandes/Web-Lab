@@ -20,7 +20,6 @@ function PermanenciaDAO(connection) {
     PermanenciaDAO.prototype.deletePermanencia = function (id_usuario, callback) {
         this._connection.query("DELETE FROM permanencia WHERE id_usuario =" + id_usuario, callback);
     }
-
 }
 
 module.exports = function () {
