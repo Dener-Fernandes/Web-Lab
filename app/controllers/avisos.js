@@ -54,7 +54,6 @@ module.exports.atualizacaoAvisos = function (app, req, res) {
     }
 }
 
-
 module.exports.insertAviso = function (app, req, res) {
     let descricao_aviso = req.body.descricao_aviso;
     let id_usuario = req.session.usuario;
