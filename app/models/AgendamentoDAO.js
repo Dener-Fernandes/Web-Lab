@@ -24,7 +24,6 @@ function AgendamentoDAO(connection) {
     AgendamentoDAO.prototype.deleteAgendamento = function (id_agendamento, callback) {
         this._connection.query("DELETE FROM agendamento WHERE id_agendamento =" + id_agendamento, callback);
     }
-
 }
 module.exports = function () {
     return AgendamentoDAO;
