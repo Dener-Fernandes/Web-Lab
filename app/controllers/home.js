@@ -105,6 +105,7 @@ module.exports.updateLaboratorio0 = function (app, req, res) {
         res.send("Erro ao conectar ao banco de dados. Por favor tente mais tarde").end();
     }
 }
+
 module.exports.updateLaboratorio1 = function (app, req, res) {
     let id_laboratorio = req.body.id_laboratorio;
     let descricao_laboratorio = req.body.descricao_laboratorio_atualizacao;
