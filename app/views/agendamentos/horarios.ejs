@@ -1,965 +1,965 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+      Web Lab
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+      name='viewport'/>
+    <!--Fonts and icons-->
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <!-- CSS Files -->
+    <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/ajustes.css"/>
+    <link rel="shortcut icon" href="img/imagens-weblab/weblab-icone.ico"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <!-- <link href="../assets/demo/demo.css" rel="stylesheet"/> -->
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Web Lab
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-    name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
-  <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/ajustes.css"/>
-  <link rel="shortcut icon" href="img/imagens-weblab/weblab-icone.ico"/>
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <!-- <link href="../assets/demo/demo.css" rel="stylesheet"/> -->
-</head>
-
-<body>
-  <!--Menu-->
-  <div class="wrapper">
-    <div class="sidebar" data-color="green" data-background-color="black">
-      <div class="logo">
-        <a href="" class="simple-text logo-normal">
-          Web Lab
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item">
-            <form class="logout2" action="/logout" method="POST">
-              <button type="submit"><i class="material-icons nav-link">logout</i><p>Sair</p></button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/home">
-              <i class="material-icons">home</i>
-              <p>Página inicial</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario">
-              <i class="material-icons">person</i>
-              <p>Perfil de usuário</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/agendamentos">
-              <i class="material-icons">calendar_today</i>
-              <p>Agendamentos</p>
-            </a>
-          </li>  
-          <li class="nav-item">
-            <a class="nav-link" href="/tecnicos">
-              <i class="material-icons">supervisor_account</i>
-              <p>Técnicos dos laboratórios</p>
-            </a>
-          </li>
-          <%if (nivelUsuario == "1") {%>
-            <li class="nav-item">
-              <a class="nav-link" href="/pagina_cadastro_usuarios">
-                <i class="material-icons">assignment_ind</i>
-                <p>Cadastrar usuários</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cadastro_itens">
-                <i class="material-icons">assignment</i>
-                <p>Cadastrar itens</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cadastro_avisos">
-                <i class="material-icons">assignment_late</i>
-                <p>Cadastrar avisos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/lista_agendamentos">
-                <i class="material-icons">list</i>
-                <p>Lista de agendamentos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/lista_usuarios">
-                <i class="material-icons">people</i>
-                <p>Lista de usuários</p>
-              </a>
-            </li>
-          <%}%> 
-          <li class="nav-item">
-            <a class="nav-link" href="/equipamentos">
-              <i class="material-icons">build</i>
-              <p>Equipamentos</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/produtos">
-              <i class="material-icons">bubble_chart</i>
-              <p>Produtos</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/mural_avisos">
-              <i class="material-icons">notifications</i>
-              <p>Mural de avisos</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--Menu -->
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Horários</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
-            aria-expanded="false" aria-label="Toggle navigation" data-target="navigation-example">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
+  <body>
+    <!--Menu-->
+    <div class="wrapper">
+      <div class="sidebar" data-color="green" data-background-color="black">
+        <div class="logo">
+          <a href="" class="simple-text logo-normal">
+            Web Lab
+          </a>
         </div>
-      </nav>
-      <!-- End Navbar -->
-      <!-- Conteúdo principal  -->
-      <div class="content mt-1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header bg-success">
-                  <div class="row">
-                    <div class="col-md-12 text-center">
-                      <h3 class="card-title text-white">Horários disponíveis</h3>
-                      <h4 class="card-subtitle text-white">Agende um horário!</h4>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item">
+              <form class="logout2" action="/logout" method="POST">
+                <button type="submit"><i class="material-icons nav-link">logout</i><p>Sair</p></button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home">
+                <i class="material-icons">home</i>
+                <p>Página inicial</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/usuario">
+                <i class="material-icons">person</i>
+                <p>Perfil de usuário</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/agendamentos">
+                <i class="material-icons">calendar_today</i>
+                <p>Agendamentos</p>
+              </a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link" href="/tecnicos">
+                <i class="material-icons">supervisor_account</i>
+                <p>Técnicos dos laboratórios</p>
+              </a>
+            </li>
+            <%if (nivelUsuario == "1") {%>
+              <li class="nav-item">
+                <a class="nav-link" href="/pagina_cadastro_usuarios">
+                  <i class="material-icons">assignment_ind</i>
+                  <p>Cadastrar usuários</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cadastro_itens">
+                  <i class="material-icons">assignment</i>
+                  <p>Cadastrar itens</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cadastro_avisos">
+                  <i class="material-icons">assignment_late</i>
+                  <p>Cadastrar avisos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lista_agendamentos">
+                  <i class="material-icons">list</i>
+                  <p>Lista de agendamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lista_usuarios">
+                  <i class="material-icons">people</i>
+                  <p>Lista de usuários</p>
+                </a>
+              </li>
+            <%}%> 
+            <li class="nav-item">
+              <a class="nav-link" href="/equipamentos">
+                <i class="material-icons">build</i>
+                <p>Equipamentos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produtos">
+                <i class="material-icons">bubble_chart</i>
+                <p>Produtos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/mural_avisos">
+                <i class="material-icons">notifications</i>
+                <p>Mural de avisos</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--Menu -->
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="javascript:void(0)">Horários</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+              aria-expanded="false" aria-label="Toggle navigation" data-target="navigation-example">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        <!-- Conteúdo principal  -->
+        <div class="content mt-1">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header bg-success">
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <h3 class="card-title text-white">Horários disponíveis</h3>
+                        <h4 class="card-subtitle text-white">Agende um horário!</h4>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="card-body pb-0">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="responsbile-table">
-                        <table class="table text-center">
-                          <thead>
-                            <th>
-                              <h5>MANHÃ</h5>
-                            </th>
-                            <th>
-                              <h5>OPÇÕES
-                            </th>
-                          </thead>
-                          <tbody>  
-                            <%if (horarios.length > 0) {%>
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "07:00 ÀS 07:45") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                  <div class="card-body pb-0">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="responsbile-table">
+                          <table class="table text-center">
+                            <thead>
+                              <th>
+                                <h5>MANHÃ</h5>
+                              </th>
+                              <th>
+                                <h5>OPÇÕES
+                              </th>
+                            </thead>
+                            <tbody>  
+                              <%if (horarios.length > 0) {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "07:00 ÀS 07:45") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>07:00 ÀS 07:45</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>07:00 ÀS 07:45</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">CANCELAR AGENDAMENTO</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">CONFIRMAR</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>  
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>07:00 ÀS 07:45</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if (i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>07:00 ÀS 07:45</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">CANCELAR AGENDAMENTO</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">CONFIRMAR</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>  
-                                      </td>
-                                    </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>07:00 ÀS 07:45</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario1.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario1" value="07:00 ÀS 07:45"/></td>
+                                    </tr>    
+                                  <%}%>  
                                 <%}%>
-                                <%if (i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>07:00 ÀS 07:45</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario1.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario1" value="07:00 ÀS 07:45"/></td>
-                                  </tr>    
-                                <%}%>  
-                              <%}%>
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "07:45 ÀS 08:30") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "07:45 ÀS 08:30") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>07:45 ÀS 08:30</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>07:45 ÀS 08:30</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>  
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>07:45 ÀS 08:30</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>07:45 ÀS 08:30</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>  
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario2.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario2" value="07:45 ÀS 08:30"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>07:45 ÀS 08:30</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
+                                  <%}%>  
                                 <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>07:45 ÀS 08:30</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario2.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario2" value="07:45 ÀS 08:30"/></td>
-                                  </tr>
-                                <%}%>  
-                              <%}%>
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "08:30 ÀS 09:15") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "08:30 ÀS 09:15") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>08:30 ÀS 09:15</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>08:30 ÀS 09:15</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>08:30 ÀS 09:15</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>08:30 ÀS 09:15</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario3.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario3" value="08:30 ÀS 09:15"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>08:30 ÀS 09:15</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
-                                <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>08:30 ÀS 09:15</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario3.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario3" value="08:30 ÀS 09:15"/></td>
-                                  </tr>
+                                  <%}%>  
                                 <%}%>  
-                              <%}%>  
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "09:15 ÀS 10:20") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "09:15 ÀS 10:20") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>09:15 ÀS 10:20</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>09:15 ÀS 10:20</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>09:15 ÀS 10:20</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if (i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>09:15 ÀS 10:20</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario4.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario4" value="09:15 ÀS 10:20"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>09:15 ÀS 10:20</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
-                                <%}%>
-                                <%if (i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>09:15 ÀS 10:20</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario4.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario4" value="09:15 ÀS 10:20"/></td>
-                                  </tr>
-                                <%}%>  
-                              <%}%>      
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "10:20 ÀS 11:05") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                  <%}%>  
+                                <%}%>      
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "10:20 ÀS 11:05") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>10:20 ÀS 11:05</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>10:20 ÀS 11:05</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>10:20 ÀS 11:05</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>10:20 ÀS 11:05</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario5.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario5" value="10:20 ÀS 11:05"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>10:20 ÀS 11:05</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
-                                <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>10:20 ÀS 11:05</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario5.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario5" value="10:20 ÀS 11:05"/></td>
-                                  </tr>
+                                  <%}%>  
                                 <%}%>  
-                              <%}%>  
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "11:05 ÀS 11:50") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "11:05 ÀS 11:50") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>11:05 ÀS 11:50</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>11:05 ÀS 11:50</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>11:05 ÀS 11:50</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>11:05 ÀS 11:50</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario6.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario6" value="11:05 ÀS 11:50"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>11:05 ÀS 11:50</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
+                                  <%}%>  
                                 <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>11:05 ÀS 11:50</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario6.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario6" value="11:05 ÀS 11:50"/></td>
-                                  </tr>
-                                <%}%>  
-                              <%}%>
-                            <%} else {%>
-                              <tr>
-                                <td>07:00 ÀS 07:45</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario1.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario1" value="07:00 ÀS 07:45"/></td>
-                              </tr> 
-                              <tr>
-                                <td>07:45 ÀS 08:30</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario2.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario2" value="07:45 ÀS 08:30"/></td>
-                              </tr>
-                              <tr>
-                                <td>08:30 ÀS 09:15</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario3.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario3" value="08:30 ÀS 09:15"/></td>
-                              </tr>
-                              <tr>
-                                <td>09:15 ÀS 10:20</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario4.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario4" value="09:15 ÀS 10:20"/></td>
-                              </tr>
-                              <tr>
-                                <td>10:20 ÀS 11:05</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario5.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario5" value="10:20 ÀS 11:05"/></td>
-                              </tr>
-                              <tr>
-                                <td>11:05 ÀS 11:50</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario6.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario6" value="11:05 ÀS 11:50"/></td>
-                              </tr>
-                            <%}%>    
-                          </tbody>
-                        </table>
-                        <table class="table text-center">
-                          <thead>
-                            <th>
-                              <h5>TARDE</h5>
-                            </th>
-                            <th>
-                              <h5>OPÇÕES
-                            </th>
-                          </thead>
-                          <tbody>  
-                            <%if (horarios.length > 0) {%>
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "13:00 ÀS 13:45") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                              <%} else {%>
+                                <tr>
+                                  <td>07:00 ÀS 07:45</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario1.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario1" value="07:00 ÀS 07:45"/></td>
+                                </tr> 
+                                <tr>
+                                  <td>07:45 ÀS 08:30</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario2.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario2" value="07:45 ÀS 08:30"/></td>
+                                </tr>
+                                <tr>
+                                  <td>08:30 ÀS 09:15</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario3.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario3" value="08:30 ÀS 09:15"/></td>
+                                </tr>
+                                <tr>
+                                  <td>09:15 ÀS 10:20</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario4.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario4" value="09:15 ÀS 10:20"/></td>
+                                </tr>
+                                <tr>
+                                  <td>10:20 ÀS 11:05</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario5.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario5" value="10:20 ÀS 11:05"/></td>
+                                </tr>
+                                <tr>
+                                  <td>11:05 ÀS 11:50</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario6.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario6" value="11:05 ÀS 11:50"/></td>
+                                </tr>
+                              <%}%>    
+                            </tbody>
+                          </table>
+                          <table class="table text-center">
+                            <thead>
+                              <th>
+                                <h5>TARDE</h5>
+                              </th>
+                              <th>
+                                <h5>OPÇÕES
+                              </th>
+                            </thead>
+                            <tbody>  
+                              <%if (horarios.length > 0) {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "13:00 ÀS 13:45") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>13:00 ÀS 13:45</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>13:00 ÀS 13:45</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>13:00 ÀS 13:45</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if (i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>13:00 ÀS 13:45</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
-                                    </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>13:00 ÀS 13:45</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario7.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario7" value="13:00 ÀS 13:45"/></td>
+                                    </tr>    
+                                  <%}%>  
                                 <%}%>
-                                <%if (i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>13:00 ÀS 13:45</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario7.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario7" value="13:00 ÀS 13:45"/></td>
-                                  </tr>    
-                                <%}%>  
-                              <%}%>
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "13:45 ÀS 14:30") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "13:45 ÀS 14:30") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>13:45 ÀS 14:30</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>13:45 ÀS 14:30</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>13:45 ÀS 14:30</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>13:45 ÀS 14:30</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario8.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario8" value="13:45 ÀS 14:30"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>13:45 ÀS 14:30</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
+                                  <%}%>  
                                 <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>13:45 ÀS 14:30</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario8.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario8" value="13:45 ÀS 14:30"/></td>
-                                  </tr>
-                                <%}%>  
-                              <%}%>
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "14:30 ÀS 15:15") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "14:30 ÀS 15:15") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>14:30 ÀS 15:15</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>14:30 ÀS 15:15</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>14:30 ÀS 15:15</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>14:30 ÀS 15:15</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario9.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario9" value="14:30 ÀS 15:15"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>14:30 ÀS 15:15</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
-                                <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>14:30 ÀS 15:15</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario9.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario9" value="14:30 ÀS 15:15"/></td>
-                                  </tr>
+                                  <%}%>  
                                 <%}%>  
-                              <%}%>  
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "15:15 ÀS 16:20") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "15:15 ÀS 16:20") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>15:15 ÀS 16:20</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>15:15 ÀS 16:20</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>  
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>15:15 ÀS 16:20</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if (i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>15:15 ÀS 16:20</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>  
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario10.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario10" value="15:15 ÀS 16:20"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>15:15 ÀS 16:20</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
-                                <%}%>
-                                <%if (i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>15:15 ÀS 16:20</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario10.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario10" value="15:15 ÀS 16:20"/></td>
-                                  </tr>
-                                <%}%>  
-                              <%}%>      
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "16:20 ÀS 17:05") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                  <%}%>  
+                                <%}%>      
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "16:20 ÀS 17:05") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>16:20 ÀS 17:05</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>    
                                       <tr>
                                         <td>16:20 ÀS 17:05</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>    
+                                    <%} else {%>
+                                      <tr>
+                                        <td>16:20 ÀS 17:05</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>16:20 ÀS 17:05</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario11.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario11" value="16:20 ÀS 17:05"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>16:20 ÀS 17:05</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
-                                <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>16:20 ÀS 17:05</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario11.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario11" value="16:20 ÀS 17:05"/></td>
-                                  </tr>
+                                  <%}%>  
                                 <%}%>  
-                              <%}%>  
-                              <%for (i = 0; i < horarios.length; i++) {%>
-                                <%if (horarios[i].horario == "17:05 ÀS 17:50") {%>
-                                  <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
-                                    <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                <%for (i = 0; i < horarios.length; i++) {%>
+                                  <%if (horarios[i].horario == "17:05 ÀS 17:50") {%>
+                                    <%if (usuario == horarios[i].id_usuario || nivelUsuario == "1") {%>
+                                      <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario != "1") {%>
+                                        <tr>
+                                          <td>17:05 ÀS 17:50</td>
+                                          <td class="bg-info text-white">CONFIRMADO</td>
+                                        </tr>
+                                        <%break;%>
+                                      <%}%>  
                                       <tr>
                                         <td>17:05 ÀS 17:50</td>
-                                        <td class="bg-info text-white">CONFIRMADO</td>
+                                        <td class="text-white">
+                                          <%if (nivelUsuario == "1") {%>
+                                            <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
+                                            data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
+                                          <%} else {%>
+                                                <form action="/cancelar_agendamento" method="POST">
+                                                  <div class="form-group invisivel">
+                                                    <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
+                                                  </div>
+                                                  <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
+                                                </form>
+                                            <%}%>
+                                          <form action="atualizacao_agendamento" method="POST">
+                                            <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
+                                            <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
+                                          </form>
+                                          <%if (nivelUsuario == "1") {%>
+                                            <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
+                                              <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
+                                            <%}%>
+                                            <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
+                                              <form action="/confirmar_agendamento" method="POST">
+                                                <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
+                                                <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
+                                              </form>
+                                            <%}%>
+                                          <%}%>   
+                                        </td>
                                       </tr>
                                       <%break;%>
-                                    <%}%>  
+                                    <%} else {%>
+                                      <tr>
+                                        <td>17:05 ÀS 17:50</td>
+                                        <td class="bg-danger text-white">INDISPONÍVEL</td>
+                                      </tr>
+                                      <%break;%>
+                                      <%}%>
+                                  <%}%>
+                                  <%if ( i == (horarios.length - 1)) {%>
                                     <tr>
                                       <td>17:05 ÀS 17:50</td>
-                                      <td class="text-white">
-                                        <%if (nivelUsuario == "1") {%>
-                                          <button type="submit" class="btn btn-danger buttonTamanho col-md-4" data-toggle="modal"
-                                          data-target="#modal2" onclick="excluir2('<%=horarios[i].id_agendamento%>')">Cancelar Agendamento</button>
-                                        <%} else {%>
-                                              <form action="/cancelar_agendamento" method="POST">
-                                                <div class="form-group invisivel">
-                                                  <input type="text" class="invisivel" name="id_excluir_agendamento" value="<%=horarios[i].id_agendamento%>" readonly/> 
-                                                </div>
-                                                <button class="btn btn-danger botao_excluir buttonTamanho col-md-4">CANCELAR AGENDAMENTO</button>
-                                              </form>
-                                          <%}%>
-                                        <form action="atualizacao_agendamento" method="POST">
-                                          <input type="text" class="invisivel" name="id_agendamento_atualizacao" value="<%=horarios[i].id_agendamento%>"/>
-                                          <button class="btn btn-success buttonTamanho col-md-4">Atualizar Agendamento</button>
-                                        </form>
-                                        <%if (nivelUsuario == "1") {%>
-                                          <%if (horarios[i].status_horario == "CONFIRMADO" && nivelUsuario == "1") { %>
-                                            <span class="text-info agdText"><b>AGENDAMENTO CONFIRMADO</b></span>
-                                          <%}%>
-                                          <%if (horarios[i].status_horario == "EM ANÁLISE" && nivelUsuario == "1") {%>  
-                                            <form action="/confirmar_agendamento" method="POST">
-                                              <input type="text" class="invisivel" name="id_agendamento_confirmacao" value="<%=horarios[i].id_agendamento%>"/>
-                                              <button class="btn btn-info buttonTamanho col-md-4">Confirmar</button>
-                                            </form>
-                                          <%}%>
-                                        <%}%>   
-                                      </td>
+                                      <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                      data-target="#modal" onclick="hour(horario12.value)">Manter Agendamento</button></td>
+                                      <td class="invisivel"><input type="text" id="horario12" value="17:05 ÀS 17:50"/></td>
                                     </tr>
-                                    <%break;%>
-                                  <%} else {%>
-                                    <tr>
-                                      <td>17:05 ÀS 17:50</td>
-                                      <td class="bg-danger text-white">INDISPONÍVEL</td>
-                                    </tr>
-                                    <%break;%>
-                                    <%}%>
+                                  <%}%>  
                                 <%}%>
-                                <%if ( i == (horarios.length - 1)) {%>
-                                  <tr>
-                                    <td>17:05 ÀS 17:50</td>
-                                    <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                    data-target="#modal" onclick="hour(horario12.value)">Manter Agendamento</button></td>
-                                    <td class="invisivel"><input type="text" id="horario12" value="17:05 ÀS 17:50"/></td>
-                                  </tr>
-                                <%}%>  
-                              <%}%>
-                            <%} else {%>
-                              <tr>
-                                <td>13:00 ÀS 13:45</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario7.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario7" value="13:00 ÀS 13:45"/></td>
-                              </tr> 
-                              <tr>
-                                <td>13:45 ÀS 14:30</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario8.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario8" value="13:45 ÀS 14:30"/></td>
-                              </tr>
-                              <tr>
-                                <td>14:30 ÀS 15:15</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario9.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario9" value="14:30 ÀS 15:15"/></td>
-                              </tr>
-                              <tr>
-                                <td>15:15 ÀS 16:20</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario10.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario10" value="15:15 ÀS 16:20"/></td>
-                              </tr>
-                              <tr>
-                                <td>16:20 ÀS 17:05</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario11.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario11" value="16:20 ÀS 17:05"/></td>
-                              </tr>
-                              <tr>
-                                <td>17:05 ÀS 17:50</td>
-                                <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
-                                data-target="#modal" onclick="hour(horario12.value)">Manter Agendamento</button></td>
-                                <td class="invisivel"><input type="text" id="horario12" value="17:05 ÀS 17:50"/></td>
-                              </tr>
-                            <%}%>    
-                          </tbody>
-                        </table>
+                              <%} else {%>
+                                <tr>
+                                  <td>13:00 ÀS 13:45</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario7.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario7" value="13:00 ÀS 13:45"/></td>
+                                </tr> 
+                                <tr>
+                                  <td>13:45 ÀS 14:30</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario8.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario8" value="13:45 ÀS 14:30"/></td>
+                                </tr>
+                                <tr>
+                                  <td>14:30 ÀS 15:15</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario9.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario9" value="14:30 ÀS 15:15"/></td>
+                                </tr>
+                                <tr>
+                                  <td>15:15 ÀS 16:20</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario10.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario10" value="15:15 ÀS 16:20"/></td>
+                                </tr>
+                                <tr>
+                                  <td>16:20 ÀS 17:05</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario11.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario11" value="16:20 ÀS 17:05"/></td>
+                                </tr>
+                                <tr>
+                                  <td>17:05 ÀS 17:50</td>
+                                  <td><button class="btn btn-success buttonTamanho" data-toggle="modal"
+                                  data-target="#modal" onclick="hour(horario12.value)">Manter Agendamento</button></td>
+                                  <td class="invisivel"><input type="text" id="horario12" value="17:05 ÀS 17:50"/></td>
+                                </tr>
+                              <%}%>    
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -970,220 +970,219 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="modalLabel">Preencha o formulário</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/salvar_agendamento" method="POST">
-            <h4>Motivo do agendamento</h4>
-            <%if (validacao.length > 0) {%>
-              <%for (let i = 0; i < validacao.length ; i++) {%>
-                <%if (validacao[i].msg == "2") {%>
-                <p class="text-danger">O motivo do agendamento é obrigatório!</p>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="modalLabel">Preencha o formulário</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/salvar_agendamento" method="POST">
+              <h4>Motivo do agendamento</h4>
+              <%if (validacao.length > 0) {%>
+                <%for (let i = 0; i < validacao.length ; i++) {%>
+                  <%if (validacao[i].msg == "2") {%>
+                  <p class="text-danger">O motivo do agendamento é obrigatório!</p>
+                  <%}%>  
                 <%}%>  
               <%}%>  
-            <%}%>  
-            <select class="custom-select" name="motivo_agendamento">
-              <option value="">ESCOLHER</option>
-              <%if (motivos.length > 0) {%>
-                <%for (let i = 0; i < motivos.length; i++) {%>
-                  <option value="<%=motivos[i].id_motivo_agendamento%>"><%=motivos[i].descricao_motivo%></option>
+              <select class="custom-select" name="motivo_agendamento">
+                <option value="">ESCOLHER</option>
+                <%if (motivos.length > 0) {%>
+                  <%for (let i = 0; i < motivos.length; i++) {%>
+                    <option value="<%=motivos[i].id_motivo_agendamento%>"><%=motivos[i].descricao_motivo%></option>
+                  <%}%>  
                 <%}%>  
-              <%}%>  
-            </select>
-            <h4 class="mt-3">Descrição do agendamento</h4>
-            <%if (validacao.length > 0) {%>
-              <%for (let i = 0; i < validacao.length ; i++) {%>
-                <%if (validacao[i].msg == "3") {%>
-                <p class="text-danger">A descrição do agendamento é obrigatório!</p>
-                <%}%>  
-                <%if (validacao[i].msg == "4") {%>
-                  <p class="text-danger">A descrição precisa ter mais de 10 caracteres e menos de 100!</p>
-                  <%}%> 
-              <%}%>  
-            <%}%> 
-            <textarea class="form-control" name="descricao_agendamento"><%=agendamento.descricao_agendamento%></textarea>
-            <h4 class="mt-3">Produtos</h4>
-            <span>Utilizarei produtos</span>
-            <input type="radio" value="true" name="utilizar_produto" checked onclick="menu('0')"/>
-            <span>Não utilizarei</span>
-            <input type="radio" value="false" name="utilizar_produto" onclick="menu('1')"/>
-            <div class="visivel" id="produtos">
-              <select class="custom-select" name="nome_produto">
-                <option value="F">ESCOLHER</option>
-                <%if (produtos.length > 0) {%>
-                  <%for (let i = 0; i < produtos.length; i++) {%>
-                    <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
-                      <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
               </select>
-              <select class="custom-select" name="nome_produto">
-                <option value="F">ESCOLHER</option>
-                <%if (produtos.length > 0) {%>
-                  <%for (let i = 0; i < produtos.length; i++) {%>
-                    <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
-                      <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
-                    <%}%>  
+              <h4 class="mt-3">Descrição do agendamento</h4>
+              <%if (validacao.length > 0) {%>
+                <%for (let i = 0; i < validacao.length ; i++) {%>
+                  <%if (validacao[i].msg == "3") {%>
+                  <p class="text-danger">A descrição do agendamento é obrigatório!</p>
                   <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select" name="nome_produto">
-                <option value="F">ESCOLHER</option>
-                <%if (produtos.length > 0) {%>
-                  <%for (let i = 0; i < produtos.length; i++) {%>
-                    <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
-                      <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select" name="nome_produto">
-                <option value="F">ESCOLHER</option>
-                <%if (produtos.length > 0) {%>
-                  <%for (let i = 0; i < produtos.length; i++) {%>
-                    <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
-                      <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select visivel" name="nome_produto">
-                <option value="F">ESCOLHER</option>
-                <%if (produtos.length > 0) {%>
-                  <%for (let i = 0; i < produtos.length; i++) {%>
-                    <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
-                      <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-            </div>
-            <h4 class="mt-3">Equipamentos</h4>
-            <span>Utilizarei equipamentos</span>
-            <input type="radio" value="true" name="utilizar_equipamento" checked onclick="menu('2')"/>
-            <span>Não utilizarei</span>
-            <input type="radio" value="false" name="utilizar_equipamento" onclick="menu('3')"/>
-            <div class="visivel" id="equipamentos">
-              <select class="custom-select visivel" name="nome_equipamento">
-                <option value="F">ESCOLHER</option>
-                <%if (equipamentos.length > 0) {%>
-                  <%for (let i = 0; i < equipamentos.length; i++) {%>
-                    <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
-                      <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select visivel" name="nome_equipamento">
-                <option value="F">ESCOLHER</option>
-                <%if (equipamentos.length > 0) {%>
-                  <%for (let i = 0; i < equipamentos.length; i++) {%>
-                    <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
-                      <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select visivel" name="nome_equipamento">
-                <option value="F">ESCOLHER</option>
-                <%if (equipamentos.length > 0) {%>
-                  <%for (let i = 0; i < equipamentos.length; i++) {%>
-                    <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
-                      <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select visivel" name="nome_equipamento">
-                <option value="F">ESCOLHER</option>
-                <%if (equipamentos.length > 0) {%>
-                  <%for (let i = 0; i < equipamentos.length; i++) {%>
-                    <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
-                      <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%> 
-              </select>
-              <select class="custom-select visivel" name="nome_equipamento">
-                <option value="F">ESCOLHER</option>
-                <%if (equipamentos.length > 0) {%>
-                  <%for (let i = 0; i < equipamentos.length; i++) {%>
-                    <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
-                      <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
-                    <%}%>  
-                  <%}%>  
-                <%}%>
-              </select>
-              <input type="text" class="invisivel" name="data" value="<%=data%>"/>
-              <input type="text" class="invisivel" name="horario" id="horario" value=""/>
-              <input type="text" class="invisivel" name="laboratorio_agendamento" value="<%=laboratorio_agendamento%>"/>
-            </div>
-            <div class="row mt-3">
-              <button type="button" class="btn btn-danger col-12 col-md" data-dismiss="modal">Fechar</button>
-              <button type="submit" class="btn btn-success col-12 col-md">Enviar</button>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="modalLabel">Tem certeza que deseja recusar o agendamento?</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/cancelar_agendamento" method="POST">
-            <input type="text" class="invisivel" name="data" value="<%=data%>"/>
-            <input type="text" class="invisivel" name="id_excluir_agendamento" id="confirmar_exclusao" value="" readonly/> 
-            <div class="form-group">
-              <h4>Descreva o motivo do cancelamento</h4>
-              <%if (validacaoCancelamento.length > 0) {%>
-                <%if (validacaoCancelamento[0].msg == "0") {%>
-                  <span class="text-danger">A descrição do cancelamento é obrigatória!</span>
+                  <%if (validacao[i].msg == "4") {%>
+                    <p class="text-danger">A descrição precisa ter mais de 10 caracteres e menos de 100!</p>
+                    <%}%> 
                 <%}%>  
               <%}%> 
-              <textarea class="form-control" name="descricao_cancelamento"></textarea>
-              <button class="btn btn-danger botao_excluir col-md-12 mt-3">CANCELAR AGENDAMENTO</button>
-            </div>
-          </form>
+              <textarea class="form-control" name="descricao_agendamento"><%=agendamento.descricao_agendamento%></textarea>
+              <h4 class="mt-3">Produtos</h4>
+              <span>Utilizarei produtos</span>
+              <input type="radio" value="true" name="utilizar_produto" checked onclick="menu('0')"/>
+              <span>Não utilizarei</span>
+              <input type="radio" value="false" name="utilizar_produto" onclick="menu('1')"/>
+              <div class="visivel" id="produtos">
+                <select class="custom-select" name="nome_produto">
+                  <option value="F">ESCOLHER</option>
+                  <%if (produtos.length > 0) {%>
+                    <%for (let i = 0; i < produtos.length; i++) {%>
+                      <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                        <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select" name="nome_produto">
+                  <option value="F">ESCOLHER</option>
+                  <%if (produtos.length > 0) {%>
+                    <%for (let i = 0; i < produtos.length; i++) {%>
+                      <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                        <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select" name="nome_produto">
+                  <option value="F">ESCOLHER</option>
+                  <%if (produtos.length > 0) {%>
+                    <%for (let i = 0; i < produtos.length; i++) {%>
+                      <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                        <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select" name="nome_produto">
+                  <option value="F">ESCOLHER</option>
+                  <%if (produtos.length > 0) {%>
+                    <%for (let i = 0; i < produtos.length; i++) {%>
+                      <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                        <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select visivel" name="nome_produto">
+                  <option value="F">ESCOLHER</option>
+                  <%if (produtos.length > 0) {%>
+                    <%for (let i = 0; i < produtos.length; i++) {%>
+                      <%if (produtos[i].status_produto == "DISPONÍVEL") {%>
+                        <option value=" <%=produtos[i].nome_produto%>"><%=produtos[i].nome_produto%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+              </div>
+              <h4 class="mt-3">Equipamentos</h4>
+              <span>Utilizarei equipamentos</span>
+              <input type="radio" value="true" name="utilizar_equipamento" checked onclick="menu('2')"/>
+              <span>Não utilizarei</span>
+              <input type="radio" value="false" name="utilizar_equipamento" onclick="menu('3')"/>
+              <div class="visivel" id="equipamentos">
+                <select class="custom-select visivel" name="nome_equipamento">
+                  <option value="F">ESCOLHER</option>
+                  <%if (equipamentos.length > 0) {%>
+                    <%for (let i = 0; i < equipamentos.length; i++) {%>
+                      <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                        <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select visivel" name="nome_equipamento">
+                  <option value="F">ESCOLHER</option>
+                  <%if (equipamentos.length > 0) {%>
+                    <%for (let i = 0; i < equipamentos.length; i++) {%>
+                      <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                        <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select visivel" name="nome_equipamento">
+                  <option value="F">ESCOLHER</option>
+                  <%if (equipamentos.length > 0) {%>
+                    <%for (let i = 0; i < equipamentos.length; i++) {%>
+                      <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                        <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select visivel" name="nome_equipamento">
+                  <option value="F">ESCOLHER</option>
+                  <%if (equipamentos.length > 0) {%>
+                    <%for (let i = 0; i < equipamentos.length; i++) {%>
+                      <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                        <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%> 
+                </select>
+                <select class="custom-select visivel" name="nome_equipamento">
+                  <option value="F">ESCOLHER</option>
+                  <%if (equipamentos.length > 0) {%>
+                    <%for (let i = 0; i < equipamentos.length; i++) {%>
+                      <%if (equipamentos[i].status_equipamento == "DISPONÍVEL") {%>
+                        <option value=" <%=equipamentos[i].nome_equipamento%>"><%=equipamentos[i].nome_equipamento%></option>
+                      <%}%>  
+                    <%}%>  
+                  <%}%>
+                </select>
+                <input type="text" class="invisivel" name="data" value="<%=data%>"/>
+                <input type="text" class="invisivel" name="horario" id="horario" value=""/>
+                <input type="text" class="invisivel" name="laboratorio_agendamento" value="<%=laboratorio_agendamento%>"/>
+              </div>
+              <div class="row mt-3">
+                <button type="button" class="btn btn-danger col-12 col-md" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-success col-12 col-md">Enviar</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Modal -->
-  <!--   Core JS Files   -->
-  <script src="js/ajustes.js"></script>
-  <script src="js/core/jquery.min.js"></script>
-  <script src="js/core/popper.min.js"></script>
-  <script src="js/core/bootstrap-material-design.min.js"></script>
-  <script src="https://unpkg.com/default-passive-events"></script>
-  <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!--  Google Maps Plugin    -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
-  <!-- Chartist JS -->
-  <script src="js/plugins/chartist.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="js/material-dashboard.js?v=2.1.0"></script>
-</body>
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="modalLabel">Tem certeza que deseja recusar o agendamento?</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/cancelar_agendamento" method="POST">
+              <input type="text" class="invisivel" name="data" value="<%=data%>"/>
+              <input type="text" class="invisivel" name="id_excluir_agendamento" id="confirmar_exclusao" value="" readonly/> 
+              <div class="form-group">
+                <h4>Descreva o motivo do cancelamento</h4>
+                <%if (validacaoCancelamento.length > 0) {%>
+                  <%if (validacaoCancelamento[0].msg == "0") {%>
+                    <span class="text-danger">A descrição do cancelamento é obrigatória!</span>
+                  <%}%>  
+                <%}%> 
+                <textarea class="form-control" name="descricao_cancelamento"></textarea>
+                <button class="btn btn-danger botao_excluir col-md-12 mt-3">CANCELAR AGENDAMENTO</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <!--   Core JS Files   -->
+    <script src="js/ajustes.js"></script>
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://unpkg.com/default-passive-events"></script>
+    <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--  Google Maps Plugin    -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+    <!-- Chartist JS -->
+    <script src="js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="js/material-dashboard.js?v=2.1.0"></script>
+  </body>
 </html>
