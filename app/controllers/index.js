@@ -1,5 +1,10 @@
 module.exports.Index = function (app, req, res) {
-    res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false, cpfCadastrado: {}});
+    if (req.session.loggedIn) {
+        res.redirect("/home");
+    }
+    else {
+        res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false, cpfCadastrado: {}});
+    }
 }
 
 module.exports.Login = function (app, req, res) {

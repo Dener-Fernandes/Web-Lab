@@ -192,7 +192,7 @@ module.exports.insertUsuario = function (app, req, res) {
 
     try {
         usuarioModel.getUsuarios(function (error, result) {
-            for (let i = 0; i < result1.length; i++) {
+            for (let i = 0; i < result.length; i++) {
                 if (result[i].cpf_usuario == usuario.cpf_usuario) {
                     res.render("home/index", {resultado: {}, validacao: {}, validacaoCpf: {}, validacaoEmail: {}, validacaoSenha: {}, cadastrado: false, cpfCadastrado: "1"});
                     return;

@@ -12,7 +12,7 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-var app = require("./config/server");
+let app = require("./config/server");
 
 app.listen(3000, function (){
     console.log("Server On");
